@@ -123,18 +123,10 @@ where,
 \end{equation}
 where $R_{ij}$ is the equivalent thermal resistance between two neighboring components $\Omega_i$ and $\Omega_j$, and $R_i$ is the thermal resistance between component $\Omega_i$ and the Dirichlet boundary. The thermal resistances are computed based on the geometry and material properties of the components; details regarding their computation are provided in Appendix~\ref{appendix_mathematical_details}.
 
-\begin{figure}
-    \centering
-    \subfigure[TPS Decomposition]{\includegraphics[width=0.8\textwidth]{./figs/four_components.png}}
-    \subfigure[Lumped Mass Representation]{\includegraphics[width=0.8\textwidth]{./figs/lumped_mass_representation.png}}
-    \caption{Partition of the TPS into three ablating and one non-ablating components with the corresponding lumped-mass representation.}
-    \label{fig_four_components}
-\end{figure}
-
 \subsubsection{Surface Velocity Model}
 The displacement is assumed to be \textit{one-dimensional} on the heated boundary $\Gamma_q$, i.e., the surface recedes only in the direction of the applied load. For example, in Fig.~\ref{fig_four_components}, the surface displacement on the heated boundary occurs only in the negative $y$-direction for the three components exposed to the hypersonic boundary layer; the fourth component is the substrate and does not ablate. Displacements along the $x$ direction is small relative to displacements in the $y$ direction, and are thus neglected. 
 
-For the $i$-th component, the SVM considered in this work takes the form,
+For the $i$-th ablating component, the SVM considered in this work takes the form,
 \begin{equation}
     \dot{\vw} = \vXi\bvu - \tvf\label{eqn_svm}
 \end{equation}
@@ -172,4 +164,4 @@ For example, consider the case where each component $\Omega_i$ is treated as one
 \end{equation}
 Clearly, the LCM is a coarse zeroth-order DG model with the inverse of thermal resistance chosen as the element-wise penalty factors. Or conversely, the DG model is a refined version of LCM via \textit{hp}-adaptation.
 
-The FOM and RPM represent two extremes in the modeling fidelity and computational cost spectrum. On one hand, the FOM is the most accurate but computationally expensive to evaluate due to the fine mesh discretizations for both the temperature and displacement fields, leading to possibly millions of state variables. On the other hand, the RPM considers only the average temperature of the material from which one-dimensional surface displacements are computed. This considerably reduces the computational cost, but sacrifices local temperature information that are critical to properly capture higher-order effects due to mesh motion and thermal gradients within each component. Thus, neither the FOM nor the RPM is an universal approach for real-world analysis, design, and optimization tasks for ablating TPS, where thousands of high-fidelity model evaluations may be necessary. This issue motivates the development of the PIROM, which can achieve the fidelity of FOM at a computational cost close to the RPM, while maintaining the generalizability to model parameters.
+The FOM and RPM represent two extremes in the modeling fidelity and computational cost spectrum. On one hand, the FOM is the most accurate but computationally expensive to evaluate due to the fine mesh discretizations for both the temperature and displacement fields, leading to possibly millions of state variables. On the other hand, the RPM considers only the average temperature of the material, from which the one-dimensional surface displacements are computed by integrating \cref{eqn_svm}. This considerably reduces the computational cost, but sacrifices local temperature information that are critical to properly capture higher-order effects due to mesh motion and thermal gradients within each component. Thus, neither the FOM nor the RPM is an universal approach for real-world analysis, design, and optimization tasks for ablating TPS, where thousands of high-fidelity model evaluations may be necessary. This issue motivates the development of the PIROM, which can achieve the fidelity of FOM at a computational cost close to the RPM, while maintaining the generalizability to model parameters.

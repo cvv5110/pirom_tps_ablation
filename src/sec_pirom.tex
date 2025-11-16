@@ -94,11 +94,11 @@ Define the hidden states as,
 \begin{equation}
     \beta_j(t) = \int_{0}^{t}\cK_j(s,\bvu)\phi_j(s,\bvu)ds
 \end{equation}
-then through its differentiation with respect to time,
+and differentiate with respect to time,,
 \begin{equation}
     \dot{\beta}_j(t) = -\left[\lambda_j + e_j(\bvu)\right]\beta_j(t) + \vq_j^{\top}\bvu(t) + \vg_j(\bvu)^{\top}\bvu(t) + \vr_j^{\top}\bvf(t)
 \end{equation}
-and the memory term becomes,
+to obtain the memory,
 \begin{equation}
     \int_{0}^{t}\vkappa(t,s,\bvu)ds = \sum_{j=1}^{m}\left[\vp_j + \vd_j(\bvu)\right]\beta_j(t)
 \end{equation}
@@ -118,10 +118,10 @@ where the data-driven operators associated to the hidden dynamics are collected 
         \vE(\bvu) &= \text{diag}\left(e_1(\bvu),e_2(\bvu),\dots,e_m(\bvu)\right)\in\mathbb{R}^{m\times m}
     \end{align}
 \end{subequations}
-The form of the temperature-dependent matrices $\vD(\bvu)$, $\vG(\bvu)$, and $\vE(\bvu)$ is provided in the next section. Note that since the hidden states $\vbeta$ serve as the memory, their initial conditions are set to zero, i.e., $\vbeta(t_0) = \vzero$, no memory at the beginning. The physics-infused model in \cref{eqn_extended_markovian_system} retains the structure of the LCM, while the hidden states account for missing physics through corrections to the stiffness and advection matrices, as well as the forcing term.
+The form of the temperature-dependent matrices $\vD(\bvu)$, $\vG(\bvu)$, and $\vE(\bvu)$ is specified in the next section. Since the hidden states $\vbeta$ serve as the memory, their initial conditions are set to zero, i.e., $\vbeta(t_0) = \vzero$, no memory at the beginning. The physics-infused model in \cref{eqn_extended_markovian_system} retains the structure of the LCM, while the hidden states account for missing physics through corrections to the stiffness and advection matrices, as well as the forcing term.
 
 \subsubsection{Coupled Physics-Infused Model}
-The next step involves coupling the physics-infused model in \cref{eqn_extended_markovian_system} with the SVM in \cref{eqn_svm} to form the PIROM for ablating TPS. To this end, define the observables as the surface temperature $\vz_u\in\mathbb{R}^{\tN}$ and displacements $\vz_w\in\mathbb{R}^{\tN}$ for $\tN\leq N$ ablating components to define the observable vector as $\vz=\left[\vz_u,\vz_w\right]^\top\in\mathbb{R}^{n_z}$ with $n_z=2\tN$ as the total number of observables.
+The next step involves coupling the physics-infused model in \cref{eqn_extended_markovian_system} with the SVM in \cref{eqn_svm} to define the PIROM for ablating TPS. To this end, define the observables as the surface temperature $\vz_u\in\mathbb{R}^{\tN}$ and displacements $\vz_w\in\mathbb{R}^{\tN}$ for $\tN\leq N$ ablating components to define the observable vector as $\vz=\left[\vz_u,\vz_w\right]^\top\in\mathbb{R}^{n_z}$ with $n_z=2\tN$ as the total number of observables.
 
 Collect the RPM and hidden states into a single state vector $\vy = \left[\bvu,\vw,\vbeta\right]^\top\in\mathbb{R}^{n_y}$, where $n_y = N + \tN + m$, and define a data-driven operator $\vM\in\mathbb{R}^{n_z\times n_{y}}$ to define the PIROM's observable as,
 \begin{equation}

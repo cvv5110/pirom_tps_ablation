@@ -4,7 +4,15 @@ In this section, the proposed PIROM approach is applied to the analysis of therm
 \subsection{Problem Definition}
 Consider the two-dimensional TPS configuration shown in Fig.~\hl{x} with constant material properties within each layer, dimensions, and BCs listed in Table~\hl{x}. Such configuration is representative of the TPS used for the initial concept 3.X vehicle in past studies~\cite{Klock2017}, and involves two main layers: an outer ablative layer, and an inner substrate layer. The top ablative layer may be composed of different materials, such as PICA or Avcoat, while the substrate layer is typically made of a high-temperature resistant material, such as carbon-carbon composite~\cite{Gasch2024}. The ablative layer, composed of $\tN=3$ ablative components, is subjected to strong time-varying and non-uniform heating, while the substrate layer, composed of one non-ablative component, is insulated adiabatically at the outer surface; the total number of components is thus $N=4$. 
 
-The sources of non-linearities in the problem originate from the coupling between the thermodynamics and the temperature-dependent mesh motion, as well as the heterogeneities across material layers. As shown in Fig.~\hl{x}, perfect thermocouple devices are placed at the surfaces of the ablative layers for the collection of the high-fidelity temperature signals that are used in the following sections for training and testing the PIROM.
+The lumped-mass representation of the TPS configuration is shown in Fig.~\ref{fig_lumped_mass_representation}, where each component $\Omega_i$ is represented by a lumped mass with uniform temperature $u_i(t)$. Details regarding the derivation of the LCM for this configuration are provided in Appendix~\ref{appendix_mathematical_details}. The sources of non-linearities studied in this problem originate from the coupling between the thermodynamics and temperature-dependent mesh motion, i.e., geometry-dependent matrices, as well as the heterogeneities across material layers. As shown in Fig.~\hl{x}, perfect thermocouple devices are placed at the surfaces of the ablative layers for the collection of the high-fidelity temperature signals that are used in the following sections for training and testing the PIROM.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{./figs/lumped_mass_representation.png}
+    \caption{Lumped-mass representation of the multi-layered TPS configuration considered in this work.}
+    \label{fig_lumped_mass_representation}
+\end{figure}
+
 
 \subsection{Parametrization of Boundary Conditions and Surface Velocity Models}
 The operating conditions of the TPS are specified by the boundary conditions, i.e., the heat flux, and the surface velocity model (SVM). Specifically, the heat flux on the Neumann BC is parametrized using $\xibc=\left\{\xi_0,\xi_1,\xi_2\right\}$, while the SVM is parametrized using $\xisvm=\{\alpha_1, \alpha_2,\alpha_3\}$. Thus, the heat flux and SVM over the $i$-th ablative component are expressed as,
@@ -17,19 +25,59 @@ where $\Gamma_{i,q}$, $z_{u,i}$, and $u_{0,i}$ correspond to the Neumann BC surf
 Full-order solutions of the TPS are computed using the FEM multi-mechanics module of the \texttt{Aria} package~\cite{Clausen2024}, where the mesh is shown in Fig.~\hl{x}. The mesh consists of 2196 total elements, with 366 elements for each ablative component and 1098 elements for the substrate component. All solutions are computed for one minute from an uniform initial temperature of $T(x,t_0)=300$ K. Given an operating condition $\vxi=\left[\xibc,\xisvm\right]^\top$, a full-order solution consists of then collection of time-varying temperature and displacement fields $\left\{\left(t_k,\vu^{(l)}_{\text{HF}}(t_k),\vw^{(l)}_{\text{HF}}(t_k),\vxi^{(l)}\right)\right\}_{k=0}^{p-1}$, where $p$ is the number of time steps with a step size of $\Delta t \approx 10^{-3}$. The observable trajectories are representative of near-wall thermocouple sensing of hypersonic flows involving heat transfer. At each time instance $t_k$, a temperature reading is recorded from each ablative component using the thermocouples shown in Fig.~\hl{x}, resulting in three temperature signals, i.e., the observables $\vz_{text{HF}}\in\mathbb{R}^3$. Therefore, each full-order solution produces one trajectory of observables $\left\{\left(t_k,\vz^{(l)}_{\text{HF}}(t_k),\vxi^{(l)}\right)\right\}_{k=0}^{p-1}$. The goal of the PIROM is to predict the surface temperature and displacement as accurately as possible.
 
 \subsubsection{Definition of Training and Testing Datasets}
-The range of parameters used to generate the training and testing datasets are listed in Table~\hl{x}. The training and testing datasets are designed, respectively, to: (1) minimize the information that the PIROM can ``see'', and (2) to maximize the variability of test operating conditions to examine the PIROM's generalization performance. A total of $110$ normally-distributed data points for the BC parametrization are visualized in Fig.~\hl{x}, and the corresponding observable trajectories are shown in Fig.~\hl{x}. The training dataset $\cD_1$ includes $10$ trajectories with randomly selected BC parameters from the $110$ points, with nominal SVM parameters $\xisvm = \{1, 1, 1\}\times 10^{-6}$.
+The range of parameters used to generate the training $\cD_1$ and testing $\left\{\cD_2,\cD_3\right\}$ datasets are listed in Table~\hl{x}. The training and testing datasets are designed, respectively, to: (1) minimize the information that the PIROM can ``see'', and (2) to maximize the variability of test operating conditions to examine the PIROM's generalization performance. A total of $110$ normally-distributed data points for the BC parametrization are visualized in Fig.~\ref{fig_parameters}, and the corresponding observable trajectories are shown in Figs.~\ref{fig_temperature_observables} and~\ref{fig_displacement_observables}. The training dataset $\cD_1$ includes $10$ trajectories with randomly selected BC parameters from the $110$ points, with nominal SVM parameters $\xisvm = \{1, 1, 1\}\times 10^{-6}$. Note that although Fig.~\ref{fig_displacement_observables} shows the surface displacements for all ablative components in $\cD_1$, only the \textit{surface temperature is used for training the PIROM}.
 
-Two additional datasets are generated for testing. The dataset $\cD_2$ includes the remaining $100$ BC parameter values not considered in $\cD_1$, and the high-fidelity simulation are generated with the same nominal SVM parameters. The dataset $\cD_3$ includes $10$ SVM parameter perturbations
+Two additional datasets are generated for testing. The dataset $\cD_2$ includes the remaining $100$ BC parameter values not considered in $\cD_1$, and the high-fidelity simulation are generated with the same nominal SVM parameters. The cases in the $\cD_3$ fixes the boundary condition as shown in Fig.~\ref{fig_parameters} and varies the SVM parameters as shown in Table.~\hl{x}. The testing datasets $\cD_2$ and $\cD_3$ are \textit{out-of-distribution} (OOD) datasets, and are meant for testing the generalizability of the ROMs to unseen BCs and SVMs, respectively. 
 
-
-The testing dataset $\cD_2$ includes the remaining $100$ parameter values, and the high-fidelity simulations are generated with varying SVM parameters $\xisvm$ sampled from a uniform distribution within the ranges listed in Table~\hl{x}.
+\begin{figure}
+    \centering
+    \subfigure[\label{fig_parameters}BC Parameters]{\includegraphics[width=0.45\textwidth]{./figs/parameters.png}}
+    \subfigure[\label{fig_temperature_observables}Surface Temperatures]{\includegraphics[width=0.45\textwidth]{./figs/temperature_observables.png}}
+    \subfigure[\label{fig_displacement_observables}Surface Displacements]{\includegraphics[width=0.45\textwidth]{./figs/displacement_observables.png}}
+    \caption{Boundary condition parameters, temperature observables, and displacement observables for the training and testing datasets.}
+    \label{fig_datasets}
+\end{figure}
 
 \subsection{Performance Metrics}
+The performance of the PIROM is evaluated by the metrics of prediction error and computatinoal cost. 
 
-\subsection{Convergence Study}
+\paragraph*{Prediction Error} Consider one trajectory of high-fidelity surface temperature and displacement data $\left\{\left(t_k,\vz^{(l)}_{u,\text{HF}}(t_k),\vz^{(l)}_{w,\text{HF}}(t_k)\right)\right\}_{k=0}^{p-1}$ for the $l$-th operating condition in the testing datasets $\cD_2$ or $\cD_3$. The difference $e_i^{(l)}$ for the $i$-th predicted observable, denoted as $z_{i}^{(l)}$, is computed as,
+\begin{equation}
+    e_i^{(l)} = \frac{1}{\Delta z_i^{(l)}}\sqrt{\frac{1}{p}\sum_{k=0}^{p-1}\left(z_{i,\text{HF}}^{(l)}(t_k) - z_{i}^{(l)}(t_k)\right)^2}
+\end{equation}
+for $i=1,2,3$ and $z_{i}^{(l)}\in\left\{z^{(l)}_{i,u},z^{(l)}_{i,w}\right\}$, and where,
+\begin{equation}
+    \Delta z_i^{(l)} = \max_{0\leq k\leq p-1} z_{i,\text{HF}}^{(l)}(t_k) - \min_{0\leq k\leq p-1} z_{i,\text{HF}}^{(l)}(t_k)
+\end{equation}
+Subsequently, the prediction error of one trajectory is computed by a weighted sum based on the area of each \textit{ablative component}, resulting in the normalized root mean square error (NRMSE) metric for one trajectory,
+\begin{equation}
+    \NRMSE = \frac{\sum_{i=1}^{\tN}\left|\Omega_i\right|e_i^{(l)}}{\sum_{i=1}^{\tN}\left|\Omega_i\right|}\times100\%\label{eqn_nrmse}
+\end{equation}
+For one dataset, the NRMSE is defined to be the average of the NRMSEs of all trajectories in the dataset.
+
+\paragraph*{Computational Acceleration} The \textit{computational acceleration} metric focuses on the quantification of the speedup factor $\frac{\cT_{\text{HF}}(\cD)}{\cT_{\cM}(D)}$, where $\cT_{\text{HF}}(\cD)$ and $\cT_{\cM}(\cD)$ correspond to the wall-clock time required by the high-fidelity model and the reduced-order model $\cM$ (i.e., PIROM or RPM) to evaluate all trajectories in the dataset $\cD$, respectively. For a benchmark analysis of the computational costs during the training phase, please refer to Ref.~\cite{VargasVenegas2025}. All computations are performed in serial for fairness in an \texttt{Intel Xeon (R) Gold 6258R CPU \@ 2.70GHz} computer with 62 GB of RAM. 
 
 \subsection{Generalization to Boundary Conditions}
+To investigate the generalization performance on the BCs, the PIROM and RPM are tested using the $\cD_2$ dataset. 
 
 \subsection{Generalization to Surface Velocity Models}
 
 \subsection{Summary of Results}
+
+\begin{figure}
+    \centering
+    \subfigure[\label{fig_bc_test_temp}BC Generalization]{\includegraphics[width=0.45\textwidth]{./figs/surface_temperature_test_51.png}}
+    \subfigure[\label{fig_bc_test_disp}BC Generalization]{\includegraphics[width=0.45\textwidth]{./figs/displacements_test_51.png}}
+    \subfigure[\label{fig_svm_temp}SVM Generalization]{\includegraphics[width=0.45\textwidth]{./figs/surface_temperature_test_perturbed_ablation_3.png}}
+    \subfigure[\label{fig_svm_disp}SVM Generalization]{\includegraphics[width=0.45\textwidth]{./figs/displacements_test_51.png}}
+    \caption{PIROM predictions against high-fidelity solutions for (a)-(b) BC generalization and (c)-(d) SVM generalization.}
+    \label{fig_results_trajectories}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \subfigure[\label{fig_temp_errors}Mean Temperature Errors]{\includegraphics[width=0.45\textwidth]{./figs/mean_temperature_errors.png}}
+    \subfigure[\label{fig_disp_errors}Mean Displacement Errors]{\includegraphics[width=0.45\textwidth]{./figs/mean_displacement_errors.png}}
+    \caption{Mean prediction errors for (a) surface temperature and (b) surface displacement across testing datasets.}
+    \label{fig_results_errors}
+\end{figure}
