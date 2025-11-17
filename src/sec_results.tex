@@ -58,9 +58,14 @@ For one dataset, the NRMSE is defined to be the average of the NRMSEs of all tra
 \paragraph*{Computational Acceleration} The \textit{computational acceleration} metric focuses on the quantification of the speedup factor $\frac{\cT_{\text{HF}}(\cD)}{\cT_{\cM}(D)}$, where $\cT_{\text{HF}}(\cD)$ and $\cT_{\cM}(\cD)$ correspond to the wall-clock time required by the high-fidelity model and the reduced-order model $\cM$ (i.e., PIROM or RPM) to evaluate all trajectories in the dataset $\cD$, respectively. For a benchmark analysis of the computational costs during the training phase, please refer to Ref.~\cite{VargasVenegas2025}. All computations are performed in serial for fairness in an \texttt{Intel Xeon (R) Gold 6258R CPU \@ 2.70GHz} computer with 62 GB of RAM. 
 
 \subsection{Generalization to Boundary Conditions}
-To investigate the generalization performance on the BCs, the PIROM and RPM are tested using the $\cD_2$ dataset. 
+To investigate the generalization performance on the BCs, the PIROM and RPM are tested using the $\cD_2$ dataset. Temperature trajectory predictions for one representative test case are shown in Figs.~\ref{fig_bc_test_temp} and~\ref{fig_bc_test_disp}, where the PIROM accurately captures the temperature and displacement dynamics. The RPM exhibits larger deviations of surface temperature and displacements, and under-predicts the surface displacements due to the averaging effect of the LCM. The mean NRMSE across all test cases in $\cD_2$ is shown in Figs.~\ref{fig_temp_errors} and~\ref{fig_disp_errors}, where the PIROM consistently achieves errors below $1\%$ for both temperature and displacement predictions, and improves the RPM's accuracy by an order of magnitude.
+
+The average temperature for the substrate component is shown in Fig.~\ref{fig_temp_errors}. As, expected, the LCM computes highly accurate predictions for the substrate's average temperature due to the symmetric nature of the TPS configuration. Despite the PIROM being trained on the surface temperatures for the three ablative components, the PIROM retains the LCM's accuracy for the substrate's average temperature. This results demonstrates the PIROM's ability to generalize to untrained observables while preserving the underlying physics of the reduced-physics backbone.
 
 \subsection{Generalization to Surface Velocity Models}
+The generalization performance of the PIROM and RPM is also evaluated on surface velocity models using the $\cD_3$ dataset. As detailed in Table~\hl{x}, the SVM parameters in $\cD_3$ are perturbed $10$ times by up to $\pm50\%$ from their nominal values. The
+
+\subsection{Computational Cost}
 
 \subsection{Summary of Results}
 
@@ -70,14 +75,8 @@ To investigate the generalization performance on the BCs, the PIROM and RPM are 
     \subfigure[\label{fig_bc_test_disp}BC Generalization]{\includegraphics[width=0.45\textwidth]{./figs/displacements_test_51.png}}
     \subfigure[\label{fig_svm_temp}SVM Generalization]{\includegraphics[width=0.45\textwidth]{./figs/surface_temperature_test_perturbed_ablation_3.png}}
     \subfigure[\label{fig_svm_disp}SVM Generalization]{\includegraphics[width=0.45\textwidth]{./figs/displacements_test_perturbed_ablation_3.png}}
-    \caption{PIROM predictions against high-fidelity solutions for (a)-(b) BC generalization and (c)-(d) SVM generalization.}
-    \label{fig_results_trajectories}
-\end{figure}
-
-\begin{figure}
-    \centering
     \subfigure[\label{fig_temp_errors}Mean Temperature Errors]{\includegraphics[width=0.45\textwidth]{./figs/mean_temperature_errors.png}}
     \subfigure[\label{fig_disp_errors}Mean Displacement Errors]{\includegraphics[width=0.45\textwidth]{./figs/mean_displacement_errors.png}}
-    \caption{Mean prediction errors for (a) surface temperature and (b) surface displacement across testing datasets.}
-    \label{fig_results_errors}
+    \caption{PIROM predictions against high-fidelity solutions for (a)-(b) BC generalization, (c)-(d) SVM generalization, and (e)-(f) mean errors across testing datasets.}
+    \label{fig_results}
 \end{figure}
