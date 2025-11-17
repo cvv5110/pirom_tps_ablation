@@ -130,7 +130,7 @@
 \newcommand{\vE}{\mathbf{E}}
 \newcommand{\tN}{\tilde{N}}
 \newcommand{\xibc}{\boldsymbol{\xi}_{\text{BC}}}
-\newcommand{\xisvm}{\boldsymbol{\xi}_{\text{SVM}}}
+\newcommand{\xisrm}{\boldsymbol{\xi}_{\text{SRM}}}
 \newcommand{\NRMSE}{\text{NRMSE}}
 
 % graphics
@@ -150,7 +150,7 @@
 \newcommand\vn{{\mathbf{n}}}
 
 \begin{document}
-\doublespacing
+\singlespacing
 \linenumbers
 
 \title{Physics-Infused Reduced-Order Modeling for Analysis of Ablating Hypersonic Thermal Protection Systems}
@@ -158,7 +158,7 @@
 \maketitle
 
 \begin{abstract}
-    This work presents a \textit{physics-infused reduced-order modeling} (PIROM) framework towards the design, analysis, and optimization of non-decomposing ablating hypersonic thermal protection systems (TPS). It is demonstrated via the modeling of transient thermo-ablative behavior of non-decomposing multi-layered hypersonic TPS. The PIROM architecture integrates a reduced-physics backbone, based on the lumped-capacitance model (LCM), with data-driven correction dynamics formulated via a coarse-graining approach rooted in the Mori-Zwanzig formlism. The LCM is coupled to a surface velocity model (SVM) to capture the recession of the ablating TPS as a function of the surface temperature. While the LCM and SVM capture the dominant physics of the ablating TPS response, the correction terms compensate for residual dynamics arising from higher-order non-linear interactions and heterogeneities across material layers. The PIROM consistently achieves errors below 1\% for a wide range of extrapolative settings of design parameters involving time-and-space varying boundary conditions and SVM models, and improves by \hl{x}\% over the LCM alone. Moreover, the PIROM delivers online evaluations that are two orders of magnitude faster than the full-order model (FOM). These results demonstrate that PIRO effectively reconciles the trade-offs between accuracy, generalizability, and efficiency, providing a promising framework for optimizing multi-physical dynamical systems, such as TPS under diverse operating conditions.
+    This work presents a \textit{physics-infused reduced-order modeling} (PIROM) framework towards the design, analysis, and optimization of non-decomposing ablating hypersonic thermal protection systems (TPS). It is demonstrated via the modeling of transient thermo-ablative behavior of non-decomposing multi-layered hypersonic TPS. The PIROM architecture integrates a reduced-physics backbone, based on the lumped-capacitance model (LCM), with data-driven correction dynamics formulated via a coarse-graining approach rooted in the Mori-Zwanzig formlism. The LCM is coupled to a surface recession model (SRM) to capture the recession of the ablating TPS as a function of the surface temperature. While the LCM and SRM capture the dominant physics of the ablating TPS response, the correction terms compensate for residual dynamics arising from higher-order non-linear interactions and heterogeneities across material layers. The PIROM consistently achieves errors of $\approx 0.5$\% for a wide range of extrapolative settings of design parameters involving time-and-space varying boundary conditions and SRM models, and improves by an order of magnitude by the LCM alone. Moreover, the PIROM delivers online evaluations that are two orders of magnitude faster than the full-order model (FOM). These results demonstrate that PIROM effectively reconciles the trade-offs between accuracy, generalizability, and efficiency, providing a promising framework for optimizing multi-physical dynamical systems, such as TPS under diverse operating conditions.
 \end{abstract}
 
 \input{./src/sec_intro}

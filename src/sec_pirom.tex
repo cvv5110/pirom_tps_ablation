@@ -2,7 +2,7 @@
 The formulation of PIROM for ablating TPS starts by connecting the FOM, i.e., the DG-FEM, and the RPM, i.e., the LCM, via a coarse-graining procedure. This procedure pinpoints the missing dynamics in the LCM when compared to DG-FEM. Subsequently, the Mori-Zwanzig (MZ) formalism is employed to determine the model form for the missing dynamics in PIROM. Lastly, the data-driven identification of the missing dynamics in PIROM is presented.
 
 \subsection{Deriving the Reduced-Physics Model via Coarse-Graining}
-The subsequent coarse-graining formulation is performed on the DG-FEM in \cref{eqn_full_dg} to derive the LCM in \cref{eqn_lcm}. This process constraints the trial function space of a full-order DG model to a subset of piece-wise constants, so that the variables $\vu$, matrices $\vA$, $\vB$, and $\vC$, and forcing vector $\vf$ are all approximated using a single state associated to the average temperature. Note that the coarse-graining is exclusively performed on the thermal dynamics, as it is the surface temperature that drives the one-dimensional recession via the SVM. Hence, the coarse-graining of the mesh dynamics is not included in the following procedure.
+The subsequent coarse-graining formulation is performed on the DG-FEM in \cref{eqn_full_dg} to derive the LCM in \cref{eqn_lcm}. This process constraints the trial function space of a full-order DG model to a subset of piece-wise constants, so that the variables $\vu$, matrices $\vA$, $\vB$, and $\vC$, and forcing vector $\vf$ are all approximated using a single state associated to the average temperature. Note that the coarse-graining is exclusively performed on the thermal dynamics, as it is the surface temperature that drives the one-dimensional recession via the SRM. Hence, the coarse-graining of the mesh dynamics is not included in the following procedure.
 
 \subsubsection{Coarse-Graining of States}
 Consider a DG model as in \cref{eqn_full_dg} for M elements and an LCM as in \cref{eqn_lcm} for $N$ components; clearly $M\gg N$. Let $\cV_j = \left\{i \big| E_i\in\Omega_j\right\}$ be the indices of the elements belonging to the $j$-th component, so $E_i\in\Omega_j$ for all $i\in \cV_j$. The number of elements in the $j$-th component is $|\cV_j|$. The average temperature on $\Omega_j$ is,
@@ -57,7 +57,7 @@ where the following relations hold,
         \bvB(\bvu) &= \vW\vPhiplus\vB\left(\vPhi\bvu\right)\vPhi &\quad \bvf(t) &= \vW\vPhiplus\vf
     \end{align}\label{eqn_coarse_grained_matrices}
 \end{subequations}
-where $\vW\in\mathbb{R}^{N\times N}$ is a diagonal matrix with the $i$-th element as $\left[\vW\right]_{ii} = \left|\cV_k\right|$ if $i\in\cV_k$. The examination of the second residual term $\vr^{(2)}(\vu,t)$ in \cref{eqn_coarse_grained_dynamics} is shown in the Appendix, and demonstrates that the physical sources of missing dynamics in the LCM include: the approximation of non-uniform temperature within each component as a constant, and the elimination of the advection term due to coarse-graining. In sum, the above results not only show that the LCM is a result of coarse-graining of the full-order DG-FEM, but also reveal the discrepancies between the LCM and the DG-FEM. These discrepancies propagate into the SVM, which as a result of the averaging in the LCM formulation, under-predicts the surface recession rates. In the subsequent section, the discrepancies in the LCM are corrected to formulate the PIROM.
+where $\vW\in\mathbb{R}^{N\times N}$ is a diagonal matrix with the $i$-th element as $\left[\vW\right]_{ii} = \left|\cV_k\right|$ if $i\in\cV_k$. The examination of the second residual term $\vr^{(2)}(\vu,t)$ in \cref{eqn_coarse_grained_dynamics} is shown in the Appendix, and demonstrates that the physical sources of missing dynamics in the LCM include: the approximation of non-uniform temperature within each component as a constant, and the elimination of the advection term due to coarse-graining. In sum, the above results not only show that the LCM is a result of coarse-graining of the full-order DG-FEM, but also reveal the discrepancies between the LCM and the DG-FEM. These discrepancies propagate into the SRM, which as a result of the averaging in the LCM formulation, under-predicts the surface recession rates. In the subsequent section, the discrepancies in the LCM are corrected to formulate the PIROM.
 
 \subsection{Physics-Infusion Via Mori-Zwanzig Formalism}
 The Mori-Zwanzig (MZ) formalism is an operator-projection technique used to derive ROMs for high-dimensional dynamical systems, especially in statistical mechanics and fluid dynamics~\cite{Parish2017a,Parish2017,Duraisamy2025}. It provides an exact reformulation of a high-dimensional Markovian dynamical system, into a low-dimensional observable non-Markovian dynamical system. The proposed ROM is subsequently developed based on the approximation to the non-Markovian term in the observable dynamics. Particularly, \cref{eqn_coarse_grained_dynamics} shows that the DG-FEM dynamics can be decomposed into the resolved dynamics $\vr^{(1)}(\vu,t)$ and the orthogonal dynamics $\vr^{(2)}(\vu,t)$, in the sense of $\cP\vr^{(2)}=0$. In this case, the MZ formalism can be invoked to express the dynamics $\bvu$ in terms of $\bvu$ alone as the projected Generalized Langevin Equation (GLE)~\cite{Parish2017a,Parish2017,Duraisamy2025},
@@ -121,7 +121,7 @@ where the data-driven operators associated to the hidden dynamics are collected 
 The form of the temperature-dependent matrices $\vD(\bvu)$, $\vG(\bvu)$, and $\vE(\bvu)$ is specified in the next section. Since the hidden states $\vbeta$ serve as the memory, their initial conditions are set to zero, i.e., $\vbeta(t_0) = \vzero$, no memory at the beginning. The physics-infused model in \cref{eqn_extended_markovian_system} retains the structure of the LCM, while the hidden states account for missing physics through corrections to the stiffness and advection matrices, as well as the forcing term.
 
 \subsubsection{Coupled Physics-Infused Model}
-The next step involves coupling the physics-infused model in \cref{eqn_extended_markovian_system} with the SVM in \cref{eqn_svm} to define the PIROM for ablating TPS. To this end, define the observables as the surface temperature $\vz_u\in\mathbb{R}^{\tN}$ and displacements $\vz_w\in\mathbb{R}^{\tN}$ for $\tN\leq N$ ablating components to define the observable vector as $\vz=\left[\vz_u,\vz_w\right]^\top\in\mathbb{R}^{n_z}$ with $n_z=2\tN$ as the total number of observables.
+The next step involves coupling the physics-infused model in \cref{eqn_extended_markovian_system} with the SRM in \cref{eqn_srm} to define the PIROM for ablating TPS. To this end, define the observables as the surface temperature $\vz_u\in\mathbb{R}^{\tN}$ and displacements $\vz_w\in\mathbb{R}^{\tN}$ for $\tN\leq N$ ablating components to define the observable vector as $\vz=\left[\vz_u,\vz_w\right]^\top\in\mathbb{R}^{n_z}$ with $n_z=2\tN$ as the total number of observables.
 
 Collect the RPM and hidden states into a single state vector $\vy = \left[\bvu,\vw,\vbeta\right]^\top\in\mathbb{R}^{n_y}$, where $n_y = N + \tN + m$, and define a data-driven operator $\vM\in\mathbb{R}^{n_z\times n_{y}}$ to define the PIROM's observable as,
 \begin{equation}
@@ -134,7 +134,7 @@ where,
         \vzero & \vI & \vzero
     \end{bmatrix}
 \end{equation}
-includes the matrices $\vM_{\bu}\in\mathbb{R}^{\tN\times N}$ and $\vM_{\beta}\in\mathbb{R}^{\tN\times m}$, which computes the surface temperature observable from the RPM states and hidden states, respectively. The PIROM is coupled to the SVM in \cref{eqn_svm} by leveraging \cref{eqn_pirom_observable_mapping} to compute the surface recession velocity. Thus, the PIROM is formally stated as,
+includes the matrices $\vM_{\bu}\in\mathbb{R}^{\tN\times N}$ and $\vM_{\beta}\in\mathbb{R}^{\tN\times m}$, which computes the surface temperature observable from the RPM states and hidden states, respectively. The PIROM is coupled to the SRM in \cref{eqn_srm} by leveraging \cref{eqn_pirom_observable_mapping} to compute the surface recession velocity. Thus, the PIROM is formally stated as,
 \begin{subequations}
     \begin{align}
         \vcA\dot{\vy} &= \left[\vcB + \vcC\right]\vy + \vcF(t)\\
@@ -174,7 +174,7 @@ Particularly, the matrices $\vP,\vLambda,\vQ,\vR$ are constants that need to be 
 \begin{equation}
     \vD(\bvu) \approx \dot{\vw}(\bvu)\odot_{\text{r}}\vD,\quad \vG(\bvu) \approx \vG\odot_{\text{r}}\dot{\vw}(\bvu), \quad \vE(\bvu) \approx \dot{\vW}(\bvu)\odot\vE\label{eqn_advection_matrix_corrections}
 \end{equation}
-where $\dot{\vw}(\bvu)$ is the SVM based on the observable temperature $\bvu$, $\odot_{\text{r}}$ is the row-wise multiplication, and $\dot{\vW}$ is the concatenation of $\dot{\vw}$ for $\tilde{m}$ times, where $\tilde{m}$ corresponds to the number of hidden states per component, i.e., $m = N\tilde{m}$.
+where $\dot{\vw}(\bvu)$ is the SRM based on the observable temperature $\bvu$, $\odot_{\text{r}}$ is the row-wise multiplication, and $\dot{\vW}$ is the concatenation of $\dot{\vw}$ for $\tilde{m}$ times, where $\tilde{m}$ corresponds to the number of hidden states per component, i.e., $m = N\tilde{m}$.
 
 The PIROM in \cref{eqn_pirom_general} incorporates explicit information on the material properties, boundary conditions, and surface recession, and is designed to generalize across parametric variations in these inputs. Moreover, the hidden dynamics in \cref{eqn_extended_markovian_system} are interpretable, as these retain the functional form of the DG-FEM in \cref{eqn_full_dg}. The next step is focused on identifying the unknown data-driven parameters $\vTheta$ characterizing the hidden dynamics.
 
@@ -211,5 +211,3 @@ Once $\vlambda$ is solved, the gradient is computed as,
 \begin{equation}
     \nabla_{\vTheta}\cJ = \frac{1}{N_s}\sum_{l=1}^{N_s}\int_{t_0}^{t_f}\left(\frac{\partial\ell}{\partial\vTheta} + \left(\vlambda^{(l)}\right)^\top\frac{\partial\vcD}{\partial\vTheta}\right)dt
 \end{equation}
-
-\hl{Discussion on TSA?}

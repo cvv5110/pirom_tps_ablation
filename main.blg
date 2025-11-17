@@ -1,48 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2024)
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: ./main.aux
+The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: references.bib
 Warning--can't use both author and editor fields in Duraisamy2025
-You've used 13 entries,
+You've used 14 entries,
             2118 wiz_defined-function locations,
-            579 strings with 6713 characters,
-and the built_in function-call counts, 4425 in all, are:
-= -- 377
-> -- 348
+            586 strings with 6971 characters,
+and the built_in function-call counts, 4857 in all, are:
+= -- 415
+> -- 381
 < -- 0
-+ -- 137
-- -- 123
-* -- 335
-:= -- 813
-add.period$ -- 37
-call.type$ -- 13
-change.case$ -- 97
++ -- 151
+- -- 135
+* -- 373
+:= -- 890
+add.period$ -- 40
+call.type$ -- 14
+change.case$ -- 106
 chr.to.int$ -- 0
-cite$ -- 14
-duplicate$ -- 139
-empty$ -- 271
-format.name$ -- 123
-if$ -- 860
+cite$ -- 15
+duplicate$ -- 150
+empty$ -- 296
+format.name$ -- 135
+if$ -- 943
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 13
-newline$ -- 66
-num.names$ -- 28
-pop$ -- 115
+int.to.str$ -- 14
+missing$ -- 14
+newline$ -- 71
+num.names$ -- 30
+pop$ -- 122
 preamble$ -- 1
-purify$ -- 86
+purify$ -- 94
 quote$ -- 0
-skip$ -- 91
+skip$ -- 98
 stack$ -- 0
-substring$ -- 84
-swap$ -- 15
+substring$ -- 108
+swap$ -- 16
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 46
+type$ -- 50
 warning$ -- 1
-while$ -- 28
-width$ -- 15
-write$ -- 136
+while$ -- 31
+width$ -- 16
+write$ -- 147
 (There was 1 warning)
