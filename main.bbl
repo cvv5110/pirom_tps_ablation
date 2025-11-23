@@ -23,10 +23,20 @@ Gary Cohen and Sebastien Pernet.
 \newblock {\em Finite Element and Discontinuous Galerkin Methods for Transient Wave Equations}.
 \newblock Springer Dordrecht, Le Chesnay and Toulouse France, 2018.
 
+\bibitem{Fang2024}
+Jianhao Fang, Weifei Hu, Zhenyu Liu, Yuhao Zhou, Chao Wei, and Jianrong Tan.
+\newblock A reduced order finite element-informed surrogate model for approximating global high-fidelity simulations.
+\newblock {\em Structural and Multidisciplinary Optimization}, 67(12), 2024.
+
 \bibitem{Gasch2024}
 Matthew Gasch, Keith Peterson, Mairead Stackpoole, Ethiraj Venkatapathy, Gregory Gonzales, and Kyle Hendrickson.
 \newblock Development of advanced ablative carbon phenolic tps for future nasa missions and commercial space.
 \newblock In {\em 38th Annual Small Satellite Conference}, Logan, Utah, May 2024.
+
+\bibitem{Howard2015}
+Micah~A. Howard and Ben~F. Blackwell.
+\newblock A multi-dimensional finite element based solver for decomposing and non-decomposing thermal protection systems.
+\newblock In AIAA, editor, {\em AIAA Aviation Forum}, 2015.
 
 \bibitem{Incropera2011}
 Frank~P. Incropera, David~P. DeWitt, Theodore~L. Bergman, and Adrienne~S. Lavine.
@@ -37,6 +47,11 @@ Frank~P. Incropera, David~P. DeWitt, Theodore~L. Bergman, and Adrienne~S. Lavine
 R.~J. Klock and Carlos Cesnik.
 \newblock Nonlinear thermal reduced-order modeling for hypersonic vehicles.
 \newblock {\em AIAA Journal}, 55(7), 2017.
+
+\bibitem{Neelan2025}
+Arun~Govind Neelan.
+\newblock Linear and non-linear reduced order model of scramjet.
+\newblock In {\em Advances in Multidisciplinary Design, Analysis and Optimization}, pages 111--118, Singapore, 2025.
 
 \bibitem{Padovan2024}
 Alberto Padovan, Blaine Vollmer, Francesco Panerai, Marco Panesi, Kelly~A. Stephani, and Daniel~J. Bodony.
@@ -62,6 +77,11 @@ Eric Parish and Karthik Duraisamy.
 Carlos A.~Vargas Venegas, Daning Huang, Patrick Blonigan, and John Tencer.
 \newblock Physics-infused reduced-order modeling for analysis of multi-layered hypersonic thermal protection systems.
 \newblock {\em ArXiv}, 2025.
+
+\bibitem{Xian2021}
+Yongyong Xian, Baisong Pan, and Luping Luo.
+\newblock A new model updating strategy with physics-based and data-driven models.
+\newblock {\em Structural and Multidisciplinary Optimization}, 64(1), 2021.
 
 \bibitem{Yu2024coarse}
 Yin Yu, John Harlim, Daning Huang, and Yan Li.

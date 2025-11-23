@@ -4,45 +4,45 @@ The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: references.bib
 Warning--can't use both author and editor fields in Duraisamy2025
-You've used 14 entries,
+You've used 18 entries,
             2118 wiz_defined-function locations,
-            586 strings with 6971 characters,
-and the built_in function-call counts, 4857 in all, are:
-= -- 415
-> -- 381
-< -- 0
-+ -- 151
-- -- 135
-* -- 373
-:= -- 890
-add.period$ -- 40
-call.type$ -- 14
-change.case$ -- 106
+            610 strings with 7704 characters,
+and the built_in function-call counts, 6230 in all, are:
+= -- 543
+> -- 456
+< -- 1
++ -- 183
+- -- 160
+* -- 464
+:= -- 1121
+add.period$ -- 52
+call.type$ -- 18
+change.case$ -- 130
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 150
-empty$ -- 296
-format.name$ -- 135
-if$ -- 943
+cite$ -- 19
+duplicate$ -- 207
+empty$ -- 400
+format.name$ -- 160
+if$ -- 1230
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 14
-newline$ -- 71
-num.names$ -- 30
-pop$ -- 122
+int.to.str$ -- 18
+missing$ -- 18
+newline$ -- 91
+num.names$ -- 40
+pop$ -- 149
 preamble$ -- 1
-purify$ -- 94
+purify$ -- 114
 quote$ -- 0
-skip$ -- 98
+skip$ -- 140
 stack$ -- 0
-substring$ -- 108
-swap$ -- 16
-text.length$ -- 0
+substring$ -- 163
+swap$ -- 30
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 50
+type$ -- 66
 warning$ -- 1
-while$ -- 31
-width$ -- 16
-write$ -- 147
+while$ -- 43
+width$ -- 20
+write$ -- 191
 (There was 1 warning)

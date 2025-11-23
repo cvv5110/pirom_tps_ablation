@@ -1,10 +1,26 @@
 \section{Introduction}
-At hypersonic speeds, aerospace vehicles experience extreme aero-thermo-dynamic environments that require specialized thermal protection systems (TPS) to shield internal sub-structures, electronics, and possibly crew members from the intense aerodynamic heating. The TPS is often composed of ablating materials -- a high-temperature capable fibrous material injected with a resin that fills the pore network and strengthens the composite~\cite{Amar2016}. The TPS design promotes the exchange of mass through thermal and chemical reactions (i.e., ablation), effectively mitigating heat transfer to the sub-structures.
+At hypersonic speeds, aerospace vehicles experience extreme aero-thermo-dynamic environments that require specialized thermal protection systems (TPS) to shield internal sub-structures, electronics, and possibly crew members from the intense aerodynamic heating. The TPS is often composed of ablating materials -- a high-temperature capable fibrous material injected with a resin that fills the pore network and strengthens the composite~\cite{Amar2016}. The TPS design promotes the exchange of mass through thermal and chemical reactions (i.e., ablation), effectively mitigating heat transfer to the sub-structures. As a result, accurate prediction for the ablating TPS response under extreme hypersonic heating becomes critical to ensuring survivability, performance, and safety of hypersonic vehicles. Not only is it necessary to assess the performance of the thermal management systems, but also the shape changes of the vehicle's outer surface induced by the ablating material, and its impact on the aerodynamics, structural integrity, and controllability. 
 
-As a result, accurate prediction for the ablating TPS response under extreme hypersonic heating becomes critical to ensuring survivability, performance, and safety of hypersonic vehicles. Not only is it necessary to assess the performance of the thermal management systems, but also the shape changes of the vehicle's outer surface induced by the ablating material, and its impact on the aerodynamics, structural integrity, and controllability. Despite its 
+Even with today's advancements in computational resources and numerical methods, high-fidelity simulations of ablating TPS remains a formidable challenge, both theoretically and computationally. On the theoretical side, the thermo-chemical reactions, coupled with the irregular pore network structure and ablating boundaries, translate into complex non-linear equations governing multi-physical interactions across several spatio-temporal scales~\cite{Amar2016,Howard2015}. On the computational side, numerical approaches based on finite-element methods (FEM) yield semi-discrete systems of differential equations modeling the transient thermo-ablative response of the TPS~\cite{Cohen2018}. The FEM discretizations lead to high-dimensional systems of equations, resulting in prohibitive computational costs for many-query applications such as design, optimization, uncertainty quantification, and real-time applications, where possibly thousands of model evaluations are required.
+
+Reduced-order models (ROMs) have emerged as a promising approach to alleviate the computational costs of high-fidelity simulations~\cite{Fang2024,Neelan2025}. Ideally, a ROM should be: (1) accurate to reproduce high-fidelity solutions, (2) support continuous or infinite-dimensional design parameters such as geometrical shapes and material distributions, (3) be computational efficient to evaluate to allow for fast turnaround times in design optimization. However, the above three capabilities usually form an \textit{impossible trinity of modeling}, as illustrated in Fig.~\ref{fig_itm}; building a ROM that achieves any two capabilities sacrifices the third.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\linewidth]{./figs/trinity.png}
+    \caption{The impossible trinity of modeling: accuracy, generalizability, and efficiency.}
+    \label{fig_itm}
+\end{figure}
+
+The impossible trinity poses a significant challenge in the development fo ROMs for the multi-disciplinary transient analysis and optimization of ablating TPS. Specifically, full-order models (FOMs), such as FEMs, offer high accuracy and robust generealization over design spaces, but are computationally expensive to evaluate. Reduced-physics models (RPMs) -- such as simplified convective-radiative heat transfer or engineering correlations -- achieve efficiency adn broad applicability by ignoring certain non-linear or small-scale effects. However, RPMs sacricice accuracy for complex thermo-ablative responses, and it is generally not clear how to leverage existing high-fidelity data to improve RPMs systematically~\cite{Xian2021}. 
 
 
-Nonetheless, high-fidelity simulations of ablating TPS remains a formidable challenge both theoretically and computationally.
+
+
+
+with multi-physics couplings across a wide range of spatial and temporal scales~\cite{Amar2016,Howard2015}. On
+
+simplifying assumptions to reduce non-linearities, and make the resulting equations more amenable for engineering application and design analysis~\cite{Amar2016}. For
 
 
 
