@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1764005494.20027 "main.aux" "main.bbl" "main" 1764005895.82082 0
+["bibtex main"] 1764006316.51833 "main.aux" "main.bbl" "main" 1764006360.74594 0
   "./references.bib" 1764002031.64971 8234 aaa8b5846fae636d6e3671ee160f704f ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1764005895.35843 17862 a5950cdb69af494c37111992b1fa347d "pdflatex"
+  "main.aux" 1764006360.33355 17862 330a03f5990dfdb670a13e3c04c38b55 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1764005879.0979 "/home/cavarga/pirom_tps_ablation/main.tex" "main.pdf" "main" 1764005895.82168 0
+["pdflatex"] 1764006344.23347 "/home/cavarga/pirom_tps_ablation/main.tex" "main.pdf" "main" 1764006360.74698 0
   "/etc/texmf/web2c/texmf.cnf" 1738619132.31217 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/cavarga/pirom_tps_ablation/main.tex" 1763999766.63599 7026 25d32858010f39d8be2787ecb897f499 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -131,15 +131,15 @@
   "figs/surface_temperature_test_perturbed_ablation_3.png" 1763407213.61439 716028 ae46735b3f5eefbc003ebee0219cf4c5 ""
   "figs/temperature_observables.png" 1763396155.37582 857114 65421e22f83046278c0ef7b1bbd42a66 ""
   "figs/trinity.png" 1763999736.40793 483377 9c2295355bcfc59fb9ddebb21acf3832 ""
-  "main.aux" 1764005895.35843 17862 a5950cdb69af494c37111992b1fa347d "pdflatex"
-  "main.bbl" 1764005494.33045 4719 9e23bbd2e03b6ad62c5db7bb82f4b94b "bibtex main"
+  "main.aux" 1764006360.33355 17862 330a03f5990dfdb670a13e3c04c38b55 "pdflatex"
+  "main.bbl" 1764006316.67445 4719 9e23bbd2e03b6ad62c5db7bb82f4b94b "bibtex main"
   "main.tex" 1763999766.63599 7026 25d32858010f39d8be2787ecb897f499 ""
-  "src/appendix_details.tex" 1764002079.15582 16519 13863c9d15d916db606c53d4446f4e84 ""
+  "src/appendix_details.tex" 1764006355.44054 16512 45e4704006f39338acd720206170887e ""
   "src/sec_conclusion.tex" 1763410157.40278 1878 1d452280f56eafd1e84ca2fc264bbf76 ""
   "src/sec_intro.tex" 1764005444.39833 6612 97a30341cfa9fa92c5621193622c6e3e ""
   "src/sec_pirom.tex" 1763410185.15885 20065 b54e8388f2f5587a8d1fa75b5fab239f ""
   "src/sec_problem.tex" 1764005733.08104 18205 212599d2aa2fd9df99e6adf0185bd2e2 ""
-  "src/sec_results.tex" 1764005895.47543 15879 ef1af3699f6fed63117d73cd5af65345 ""
+  "src/sec_results.tex" 1764006294.09839 15896 0f1e5e07cf37e6f0ae43923b8771e508 ""
   (generated)
   "main.aux"
   "main.log"
