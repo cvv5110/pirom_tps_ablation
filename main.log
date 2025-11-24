@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.8.26)  22 NOV 2025 22:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.3)  24 NOV 2025 10:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/andres/pirom_tps_ablation/main.tex
-(/home/andres/pirom_tps_ablation/main.tex
+**/home/cavarga/pirom_tps_ablation/main.tex
+(/home/cavarga/pirom_tps_ablation/main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -315,18 +315,22 @@ File: ./figs/trinity.png Graphic file (type png)
 <use ./figs/trinity.png>
 Package pdftex.def Info: ./figs/trinity.png  used on input line 10.
 (pdftex.def)             Requested size: 281.85587pt x 156.10097pt.
- [2 <./figs/trinity.png>]
-Overfull \hbox (9.13586pt too wide) in paragraph at lines 37--38
+
+
+Package natbib Warning: Citation `Rasmussen2006' on page 2 undefined on input line 17.
+
+[2 <./figs/trinity.png>]
+Overfull \hbox (9.13586pt too wide) in paragraph at lines 26--27
 []\OT1/cmr/m/n/12 Benchmark the ac-cu-racy, gen-er-al-iz-abil-ity, and com-pu-ta-tional ac-cel-er-a-tions of the PIROM
  []
 
 ) (./src/sec_problem.tex [3]
-<./figs/general_domain.png, id=27, 3537.215pt x 2650.90375pt>
+<./figs/general_domain.png, id=25, 3537.215pt x 2650.90375pt>
 File: ./figs/general_domain.png Graphic file (type png)
 <use ./figs/general_domain.png>
 Package pdftex.def Info: ./figs/general_domain.png  used on input line 13.
 (pdftex.def)             Requested size: 281.85587pt x 211.22719pt.
- [4 <./figs/general_domain.png>] [5] [6] [7] [8]) (./src/sec_pirom.tex [9] [10] [11] [12] [13] [14]) (./src/sec_results.tex [15]
+ [4 <./figs/general_domain.png>] [5] [6] [7] [8]) (./src/sec_pirom.tex [9] [10] [11] [12] [13] [14] [15]) (./src/sec_results.tex
 <./figs/mesh.png, id=77, 845.40843pt x 372.64218pt>
 File: ./figs/mesh.png Graphic file (type png)
 <use ./figs/mesh.png>
@@ -337,59 +341,59 @@ File: ./figs/lumped_mass_representation.png Graphic file (type png)
 <use ./figs/lumped_mass_representation.png>
 Package pdftex.def Info: ./figs/lumped_mass_representation.png  used on input line 12.
 (pdftex.def)             Requested size: 422.77664pt x 317.0846pt.
- [16{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [17 <./figs/mesh.png> <./figs/lumped_mass_representation.png>]
-<./figs/parameters.png, id=88, 722.7pt x 578.16pt>
+ [16] [17 <./figs/mesh.png> <./figs/lumped_mass_representation.png>] [18{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+<./figs/parameters.png, id=92, 722.7pt x 578.16pt>
 File: ./figs/parameters.png Graphic file (type png)
 <use ./figs/parameters.png>
 Package pdftex.def Info: ./figs/parameters.png  used on input line 53.
 (pdftex.def)             Requested size: 211.38832pt x 169.1089pt.
-<./figs/temperature_observables.png, id=89, 722.7pt x 578.16pt>
+<./figs/temperature_observables.png, id=93, 722.7pt x 578.16pt>
 File: ./figs/temperature_observables.png Graphic file (type png)
 <use ./figs/temperature_observables.png>
 Package pdftex.def Info: ./figs/temperature_observables.png  used on input line 54.
 (pdftex.def)             Requested size: 211.38832pt x 169.1089pt.
-<./figs/displacement_observables.png, id=90, 722.7pt x 578.16pt>
+<./figs/displacement_observables.png, id=94, 722.7pt x 578.16pt>
 File: ./figs/displacement_observables.png Graphic file (type png)
 <use ./figs/displacement_observables.png>
 Package pdftex.def Info: ./figs/displacement_observables.png  used on input line 55.
 (pdftex.def)             Requested size: 211.38832pt x 169.1089pt.
- [18] [19 <./figs/parameters.png> <./figs/temperature_observables.png> <./figs/displacement_observables.png>]
+ [19] [20 <./figs/parameters.png> <./figs/temperature_observables.png> <./figs/displacement_observables.png>]
 Overfull \hbox (4.50272pt too wide) in paragraph at lines 77--78
  \OT1/cmr/bx/n/12 Com-pu-ta-tional Ac-cel-er-a-tion \OT1/cmr/m/n/12 The \OT1/cmr/m/it/12 com-pu-ta-tional ac-cel-er-a-tion \OT1/cmr/m/n/12 met-ric fo-cuses on the quan-
  []
 
-[20]
-<./figs/surface_temperature_test_51.png, id=106, 722.7pt x 433.62pt>
+[21]
+<./figs/surface_temperature_test_51.png, id=109, 722.7pt x 433.62pt>
 File: ./figs/surface_temperature_test_51.png Graphic file (type png)
 <use ./figs/surface_temperature_test_51.png>
 Package pdftex.def Info: ./figs/surface_temperature_test_51.png  used on input line 93.
 (pdftex.def)             Requested size: 211.38832pt x 126.83168pt.
-<./figs/displacements_test_51.png, id=107, 722.7pt x 433.62pt>
+<./figs/displacements_test_51.png, id=110, 722.7pt x 433.62pt>
 File: ./figs/displacements_test_51.png Graphic file (type png)
 <use ./figs/displacements_test_51.png>
 Package pdftex.def Info: ./figs/displacements_test_51.png  used on input line 94.
 (pdftex.def)             Requested size: 211.38832pt x 126.83168pt.
-<./figs/surface_temperature_test_perturbed_ablation_3.png, id=108, 722.7pt x 433.62pt>
+<./figs/surface_temperature_test_perturbed_ablation_3.png, id=111, 722.7pt x 433.62pt>
 File: ./figs/surface_temperature_test_perturbed_ablation_3.png Graphic file (type png)
 <use ./figs/surface_temperature_test_perturbed_ablation_3.png>
 Package pdftex.def Info: ./figs/surface_temperature_test_perturbed_ablation_3.png  used on input line 95.
 (pdftex.def)             Requested size: 211.38832pt x 126.83168pt.
-<./figs/displacements_test_perturbed_ablation_3.png, id=109, 722.7pt x 433.62pt>
+<./figs/displacements_test_perturbed_ablation_3.png, id=112, 722.7pt x 433.62pt>
 File: ./figs/displacements_test_perturbed_ablation_3.png Graphic file (type png)
 <use ./figs/displacements_test_perturbed_ablation_3.png>
 Package pdftex.def Info: ./figs/displacements_test_perturbed_ablation_3.png  used on input line 96.
 (pdftex.def)             Requested size: 211.38832pt x 126.83168pt.
-<./figs/mean_temperature_errors.png, id=110, 722.7pt x 433.62pt>
+<./figs/mean_temperature_errors.png, id=113, 722.7pt x 433.62pt>
 File: ./figs/mean_temperature_errors.png Graphic file (type png)
 <use ./figs/mean_temperature_errors.png>
 Package pdftex.def Info: ./figs/mean_temperature_errors.png  used on input line 97.
 (pdftex.def)             Requested size: 211.38832pt x 126.83168pt.
-<./figs/mean_displacement_errors.png, id=111, 722.7pt x 433.62pt>
+<./figs/mean_displacement_errors.png, id=114, 722.7pt x 433.62pt>
 File: ./figs/mean_displacement_errors.png Graphic file (type png)
 <use ./figs/mean_displacement_errors.png>
 Package pdftex.def Info: ./figs/mean_displacement_errors.png  used on input line 98.
 (pdftex.def)             Requested size: 211.38832pt x 126.83168pt.
-) (./src/sec_conclusion.tex [21] [22 <./figs/surface_temperature_test_51.png> <./figs/displacements_test_51.png> <./figs/surface_temperature_test_perturbed_ablation_3.png> <./figs/displacements_test_perturbed_ablation_3.png> <./figs/mean_temperature_errors.png> <./figs/mean_displacement_errors.png>]) (./src/appendix_details.tex [23] [24] [25]
+) (./src/sec_conclusion.tex) (./src/appendix_details.tex [22] [23 <./figs/surface_temperature_test_51.png> <./figs/displacements_test_51.png> <./figs/surface_temperature_test_perturbed_ablation_3.png> <./figs/displacements_test_perturbed_ablation_3.png> <./figs/mean_temperature_errors.png> <./figs/mean_displacement_errors.png>] [24] [25]
 Overfull \hbox (6.1381pt too wide) in paragraph at lines 63--65
 \OT1/cmr/m/n/12 where $\OT1/cmr/bx/n/12 u \OT1/cmr/m/n/12 = [][] \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \OT1/cmr/m/n/12 in-cludes all DG vari-ables, $\OT1/cmr/bx/n/12 f \OT1/cmr/m/n/12 = [][] \OMS/cmsy/m/n/12 2
  []
@@ -403,7 +407,11 @@ Underfull \hbox (badness 2717) in paragraph at lines 72--75
 []\OT1/cmr/m/n/12 Eric Parish and Karthik Du-raisamy.  \OT1/cmr/m/it/12 Coarse-Graining Tur-bu-lence Us-ing the
  []
 
-[30]) [31] (./main.aux)
+[30])
+
+Package natbib Warning: There were undefined citations.
+
+[31] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -414,15 +422,15 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7452 strings out of 474222
- 126645 string characters out of 5748733
+ 7455 strings out of 474222
+ 126702 string characters out of 5748734
  1950975 words of memory out of 5000000
- 29596 multiletter control sequences out of 15000+600000
+ 29599 multiletter control sequences out of 15000+600000
  573008 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 61i,25n,69p,1648b,304s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 61i,25n,69p,1649b,304s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (31 pages, 8688121 bytes).
+Output written on main.pdf (31 pages, 8688973 bytes).
 PDF statistics:
  263 PDF objects out of 1000 (max. 8388607)
  150 compressed objects within 2 object streams

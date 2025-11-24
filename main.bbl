@@ -73,10 +73,14 @@ Eric Parish and Karthik Duraisamy.
 \newblock {\em Coarse-Graining Turbulence Using the Mori–Zwanzig Formalism}.
 \newblock Cambridge University Press, Cambridge, 2025.
 
+\bibitem{Thelen2022}
+Adam Thelen, Xiaoge Zhang, Olga Fink, Yan Lu, Sayan Ghosh, Byeng~D. Youn, Michael~D. Todd, Sankaran Mahadean, Chao Hu, and Zhen Hu.
+\newblock A comprehensive review of digital twin -- part 1: modeling and twinning enabling technologies.
+\newblock {\em Structural and Multidisciplinary Optimization}, 65(12), 2022.
+
 \bibitem{VargasVenegas2025}
-Carlos A.~Vargas Venegas, Daning Huang, Patrick Blonigan, and John Tencer.
-\newblock Physics-infused reduced-order modeling for analysis of multi-layered hypersonic thermal protection systems.
-\newblock {\em ArXiv}, 2025.
+Carlos A.~Vargas Venegas, Daning Huang, Patrick Blonigan, and JohnTencer.
+\newblock Physics-infused reduced-order modeling for analysis of multi-layered hypersonic thermal protection systems, 2025.
 
 \bibitem{Xian2021}
 Yongyong Xian, Baisong Pan, and Luping Luo.

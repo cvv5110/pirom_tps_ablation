@@ -3,46 +3,47 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: references.bib
+Warning--I didn't find a database entry for "Rasmussen2006"
 Warning--can't use both author and editor fields in Duraisamy2025
-You've used 18 entries,
+You've used 19 entries,
             2118 wiz_defined-function locations,
-            610 strings with 7704 characters,
-and the built_in function-call counts, 6230 in all, are:
-= -- 543
-> -- 456
+            617 strings with 7997 characters,
+and the built_in function-call counts, 6722 in all, are:
+= -- 580
+> -- 509
 < -- 1
-+ -- 183
-- -- 160
-* -- 464
-:= -- 1121
-add.period$ -- 52
-call.type$ -- 18
-change.case$ -- 130
++ -- 205
+- -- 180
+* -- 511
+:= -- 1208
+add.period$ -- 54
+call.type$ -- 19
+change.case$ -- 143
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 207
-empty$ -- 400
-format.name$ -- 160
-if$ -- 1230
+cite$ -- 20
+duplicate$ -- 214
+empty$ -- 423
+format.name$ -- 180
+if$ -- 1322
 int.to.chr$ -- 0
-int.to.str$ -- 18
+int.to.str$ -- 19
 missing$ -- 18
-newline$ -- 91
-num.names$ -- 40
-pop$ -- 149
+newline$ -- 95
+num.names$ -- 42
+pop$ -- 165
 preamble$ -- 1
-purify$ -- 114
+purify$ -- 126
 quote$ -- 0
-skip$ -- 140
+skip$ -- 149
 stack$ -- 0
-substring$ -- 163
-swap$ -- 30
+substring$ -- 169
+swap$ -- 31
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 66
+type$ -- 70
 warning$ -- 1
-while$ -- 43
-width$ -- 20
-write$ -- 191
-(There was 1 warning)
+while$ -- 45
+width$ -- 21
+write$ -- 200
+(There were 2 warnings)

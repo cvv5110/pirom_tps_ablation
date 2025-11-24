@@ -1,7 +1,7 @@
 \newpage\appendix
 \section{Technical Details}\label{appendix_mathematical_details}
 
-This appendix presents the technical details of the PIROM framework applied to the TPS ablation problem. The first section provides the mathematical details for the definition of the DG-FEM. The second section follows the projection procedures from Ref.\hl{x}, and demonstrates the effects of coarse-graining on the advection matrix. The third section presents the derivation of the LCM model from an energy-conservation perspective.
+This appendix presents the technical details of the PIROM framework applied to the transient modeling of thermo-ablative TPS. The first section provides the mathematical details for the definition of the DG-FEM. The second section details the coarse-graining procedures performed on the DG-FEM representation of the TPS. The third section presents the derivation of the LCM model from an energy-conservation perspective.
 
 \subsection{Full-Order Model}
 
@@ -96,7 +96,7 @@ Using \cref{eqn_projection_operator}, the resolved dynamics is computed as follo
         \end{array}
     \end{align}
 \end{subequations}
-Detailed derivations for the \#1, \#2, and \#4 terms can be found in Ref.\hl{x}. The effects of coarse-graining on the advection term \#3 are analyzed next.
+Detailed derivations for the \#1, \#2, and \#4 terms can be found in Ref.~\cite{VargasVenegas2025}. The effects of coarse-graining on the advection term \#3 are analyzed next.
 
 \paragraph*{\textit{Term \#3}} The $\vC(\vu)\in\mathbb{R}^{MP\times MP}$ matrix contains $M$ diagonal of size $P\times P$, since the basis functions are defined locally on each element. Therefore, $\left[\vC(\vu)\right]_{ij} = \vzero$ for all $i \neq j$ with $i,j=1,2,\dots,M$. It follows that for $k,l=1,2,\cdots,N$,
 \begin{subequations}
@@ -132,7 +132,7 @@ Next, the magnitude of the residual dynamics $\vr^{(2)}(\vu,t)$ is analyzed to p
        \end{array}
 \end{align}
 \end{subequations}
-The magnitude analysis for terms \#1 and \#3 can be found in Ref.\hl{x}. The analysis for term \#2 is presented next. Let $\vD(\bvu) = \vA(\vPhi\bvu)^{-1}\vP\vC(t,\vPhi\bvu)$, then,
+The magnitude analysis for terms \#1 and \#3 can be found in Ref.~\cite{VargasVenegas2025}. The analysis for term \#2 is presented next. Let $\vD(\bvu) = \vA(\vPhi\bvu)^{-1}\vP\vC(t,\vPhi\bvu)$, then,
 \begin{subequations}
     \begin{align}
         &\vPhiplus\vA(\vu)^{-1}\vC(\vu)\vu - \bvA(\bvu)^{-1}\bvC(t,\bvu)\bvu\\

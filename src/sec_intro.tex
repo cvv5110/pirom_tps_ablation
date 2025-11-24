@@ -12,28 +12,17 @@ Reduced-order models (ROMs) have emerged as a promising approach to alleviate th
     \label{fig_itm}
 \end{figure}
 
-The impossible trinity poses a significant challenge in the development fo ROMs for the multi-disciplinary transient analysis and optimization of ablating TPS. Specifically, full-order models (FOMs), such as FEMs, offer high accuracy and robust generealization over design spaces, but are computationally expensive to evaluate. Reduced-physics models (RPMs) -- such as simplified convective-radiative heat transfer or engineering correlations -- achieve efficiency adn broad applicability by ignoring certain non-linear or small-scale effects. However, RPMs sacricice accuracy for complex thermo-ablative responses, and it is generally not clear how to leverage existing high-fidelity data to improve RPMs systematically~\cite{Xian2021}. 
+The impossible trinity poses a significant challenge in the development of ROMs for the multi-disciplinary transient analysis and optimization of ablating TPS. Specifically, full-order models (FOMs), such as FEMs, offer high accuracy and robust generalization over design spaces, but are computationally expensive to evaluate. Reduced-physics models (RPMs) -- such as simplified convective-radiative heat transfer or engineering correlations -- are low-dimensional models that achieve efficiency and broad applicability by ignoring higher-order non-linear effects. However, RPMs sacrifice accuracy for complex thermo-ablative responses due to the simplifications and assumptions inherent in their formulation, and it is generally not clear how to systematically leverage existing high-fidelity data to improve RPMs~\cite{Xian2021}.
 
+Lastly, data-driven ROMs, such as Gaussian Process Regression (GPR)~\cite{Rasmussen2006} and neural ordinary differential equations (NODEs)~\cite{Chen2019}, can provide accurate and computationally-efficient approximations of high-fidelity models for complex thermo-ablative responses. However, these data-centric approaches often demand extensive high-fidelity data for training, do not necessarily satisfy fundamental physical constraints or conservation laws, and thus do not generalize well to the design spaces outside the training~\cite{Thelen2022}.
 
+This work presents the extension of the \textit{physics-infused reduced-order modeling} (PIROM) framework to include effects of ablation in for TPS applications, previously ignored in Ref.~\cite{VargasVenegas2025}. Specifically, the PIROM is demonstrated for the transient thermo-ablative response of multi-layered hypersonic TPS. The PIROM is a non-intrusive framework that combines the strengths of physics-based models with machine learning, to formulate and train ROMs for parametrized non-linear dynamical systems. A physics-based component, termed the RPM, is composed of: (1) a \textit{lumped capacitance model} (LCM) to model the heat transfer within the TPS layers, and (2) a \textit{surface recession model} (SRM) to model one-dimensional surface ablation. 
 
+Leveraging the \textit{Mori-Zwanzig} (MZ) formalism~\cite{Duraisamy2025,Parish2017,Parish2017a}, the RPM is rigorously extended with data-driven hidden dynamics to account for the missing physics in the LCM, which are learned from high-fidelity data. The hidden dynamics enables higher predictive accuracy of the PIROM when subjected to complex boundary conditions and SRM model variations. For the TPS problem, the MZ approach produces a sufficiently simple model form while maintaining the physical consistency of the PIROM, as well as the dependence on design parameters. Thus the approach aims to solve the ITM by leveraging the generalizability and computational efficiency of RPMs, while incorporating the accuracy and adaptability of data-driven extensions. More importantly, the PIROM formulation provides a general methodology for developing PIROMs for other problems.
 
-
-with multi-physics couplings across a wide range of spatial and temporal scales~\cite{Amar2016,Howard2015}. On
-
-simplifying assumptions to reduce non-linearities, and make the resulting equations more amenable for engineering application and design analysis~\cite{Amar2016}. For
-
-
-
-
-Unfortunately, high-fidelity simulations of ablating TPS remains a formidable challenge both theoretically and computationally.
-
-On the theoretical side, the thermo-chemical reactions, coupled with the irregular pore network structure, translate into simplifying assumptions to reduce non-linearities, and make the resulting equations more amenable for engineering application and design analysis~\hl{x}. For instance, one of the most notable codes is the one-dimensional \hl{CMA} code that was developed by Aerotherm Corporation in the 1960s~\hl{Howard2015}. Despite its practical use in...
-
-Another example is the CHarring Ablator Response (CHAR) ablation code, which ignores elemental decompositions of the pyrolizing gases, assumes the gases to be a mixture of perfect gases in thermal equilibrium, and assumes no reaction or condensation with the porous network~\cite{Amar2016}.
-
-In sum, the objectives of this work are as follows:
+The specific objectives of this work are summarized as follows:
 \begin{enumerate}
     \item Extend the previous PIROM formulation in Ref.~\cite{VargasVenegas2025} to model transient thermo-ablative response of multi-layered hypersonic TPS through a systematic coarse-graining procedure based on the Mori-Zwanzig formalism.
-    \item Benchmark the accuracy, generalizability, and computational accelerations of the PIROM against the RPM and the high-fidelity FEM solutions of ablating TPS, thus assessing the PIROM's capabilities to solve the ITM in complex multi-physical non-linear dynamical systems.
+    \item Benchmark the accuracy, generalizability, and computational accelerations of the PIROM against the RPM and the high-fidelity FEM solutions of ablating TPS, thus quantifying the PIROM's capabilities to solve the ITM in complex multi-physical non-linear dynamical systems.
 \end{enumerate}
 
