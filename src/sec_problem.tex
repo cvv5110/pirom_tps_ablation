@@ -1,12 +1,12 @@
 \section{Modeling of Thermal Protection Systems}
 
-This section presents the problem of thermo-ablative modeling for a non-decomposing ablating TPS, subjected to extreme hypersonic heating. Two different but mathematically connected solution strategies are provided: (1) a high-fidelity full-order model (FOM) based on a finite element method (FEM), and (2) a low-fidelity reduced-physics model (RPM) based on a lumped capacitance model (LCM) and a one-dimensional surface velocity model (SRM). The FOM is computationally expensive but provides the highest fidelity, while the RPM is computationally efficeint but has low predictive fidelity; both models are amenable to high-dimensional design variables. The RPM is used in the subsequent sections for deriving the PIROM.
+This section presents the problem of modeling the transient thermo-ablative response of a non-decomposing TPS, subjected to extreme hypersonic heating. Two different but mathematically connected solution strategies are provided: (1) a high-fidelity full-order model (FOM) based on a finite element method (FEM), and (2) a RPM based on a \textit{lumped capacitance model} (LCM) and a one-dimensional \textit{surface recession model} (SRM). The FOM is computationally expensive but provides the highest fidelity, while the RPM is computationally efficient but has low predictive fidelity. However, both models are physically consistent to high-dimensional design variables. The following discussion presents the TPS modeling problem and the FOM and RPM solution strategies.
 
 \subsection{Governing Equations}\label{sec_governing_equations}
-The multi-physics for a non-decomposing ablating TPS involves the \textit{energy equation} which models the transient heat conduction inside the TPS, and the \textit{pseudo-elasticity equation}, which models the mesh motion due to surface recession. The governing PDEs for the ablating TPS are summarized in this section.
+The multi-physics for a non-decomposing ablating TPS involves the \textit{energy equation}, which captures the transient heat conduction inside the TPS, and the \textit{pseudo-elasticity equation}, which models the transient mesh motion due to surface recession. The governing PDEs are described as follows.
 
 \subsubsection{Energy Equation}
-Consider a generic domain $\Omega\subset$, $d=2$ or $3$, illustrated in Fig.~\ref{fig_general_domain}. Let $\partial\Omega = \Gamma_q\cup\Gamma_T$ and $\Gamma_q\cap\Gamma_T = \emptyset$, where a Neumann $q_b(x,t)$ boundary condition is prescribed on the $\Gamma_q$ boundary, and represents the surface exposed to the hypersonic boundary layer. The Dirichlet $T_b(x,t)$ boundary condition is prescribed on the boundary $\Gamma_T$. The TPS is divided into $N$ non-overlapping components $\left\{\Omega_i\right\}_{i=1}^{N}$, as illustrated in Fig.~\ref{fig_general_domain} for $N=2$. The $i$-th component $\Omega_i$ is associated with material properties $\left(\rho_i,c_{p,i}, \vk_i\right)$, that are assumed to be continuous within one component, and can be discontinuous across two neighboring components. 
+Consider a generic domain $\Omega\subset$, $xd=2$ or $3$, illustrated in Fig.~\ref{fig_general_domain}. Let $\partial\Omega = \Gamma_q\cup\Gamma_T$ and $\Gamma_q\cap\Gamma_T = \emptyset$, where a Neumann $q_b(x,t)$ boundary condition is prescribed on the $\Gamma_q$ boundary, and represents the surface exposed to the hypersonic boundary layer. The Dirichlet $T_b(x,t)$ boundary condition is prescribed on the boundary $\Gamma_T$. The TPS is divided into $N$ non-overlapping components $\left\{\Omega_i\right\}_{i=1}^{N}$, as illustrated in Fig.~\ref{fig_general_domain} for $N=2$. The $i$-th component $\Omega_i$ is associated with material properties $\left(\rho_i,c_{p,i}, \vk_i\right)$, which are continuous within one component, and can be discontinuous across two neighboring components.
 
 \begin{figure}
     \centering
@@ -15,7 +15,7 @@ Consider a generic domain $\Omega\subset$, $d=2$ or $3$, illustrated in Fig.~\re
     \label{fig_general_domain}
 \end{figure}
 
-The transient heat conduction is described by the energy equation,
+The energy equation describes the transient heat conduction,
 \begin{subequations}
     \begin{align}
         \rho c_p\left(\ppt{T} + \tilde{\vv}(x,t)\cdot\nabla T\right) - \nabla\cdot (\mathbf{k}\nabla T) &= 0,\ x\in\Omega \label{eqn_thermal_pde}\\
@@ -24,7 +24,9 @@ The transient heat conduction is described by the energy equation,
         T(x,0) &= T_0(x),\ x\in\Omega\label{eqn_thermal_ic}
     \end{align}\label{eqn_governing_equations}
 \end{subequations}
-where the density $\rho$ is constant, while the heat capacity $c_p$ and thermal conductivity $\mathbf{k}\in\mathbb{R}^{d\times d}$ may depend on temperature. In the order they appear, the terms in \cref{eqn_thermal_pde} include, the unsteady energy storage, heat conduction, temperature advection due to mesh motion, and source terms due to boundary conditions. The boundary conditions for the energy equation includes Neumann \cref{eqn_thermal_bc_neumann} and Dirichlet \cref{eqn_thermal_bc_dirichlet} on $\Gamma_T$. 
+where $\rho$, $c_p$, and $\mathbf{k}\in\mathbb{R}^{d\times d}$ are the constant density, heat capacity, and thermal conductivity. Note that our prior work has applied the PIROM to TPS problems with temperature-varying material properties~\cite{VargasVenegas2025}. In the order they appear, the $\frac{\partial T}{\partial t}$ term includes the unsteady energy storage, 
+
+the terms in \cref{eqn_thermal_pde} include the unsteady energy storage, heat conduction, temperature advection due to mesh motion, and source terms due to boundary conditions. The boundary conditions for the energy equation include Neumann \cref{eqn_thermal_bc_neumann} and Dirichlet \cref{eqn_thermal_bc_dirichlet} on $\Gamma_T$. 
 
 An Abirtrary Lagrangian-Eulerian (ALE) description is used to account for mesh motion due to surface recession, where $\tilde{\vv}(x,t)$ is the relative velocity of the material with respect to the mesh,
 \begin{equation}
