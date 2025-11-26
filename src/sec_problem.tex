@@ -24,11 +24,9 @@ The energy equation describes the transient heat conduction,
         T(x,0) &= T_0(x),\ x\in\Omega\label{eqn_thermal_ic}
     \end{align}\label{eqn_governing_equations}
 \end{subequations}
-where $\rho$, $c_p$, and $\mathbf{k}\in\mathbb{R}^{d\times d}$ are the constant density, heat capacity, and thermal conductivity. Note that our prior work has applied the PIROM to TPS problems with temperature-varying material properties~\cite{VargasVenegas2025}. In the order they appear, the $\frac{\partial T}{\partial t}$ term includes the unsteady energy storage, 
+where $\rho$, $c_p$, and $\mathbf{k}\in\mathbb{R}^{d\times d}$ are the constant density, heat capacity, and thermal conductivity. Note that our prior work has applied the PIROM to TPS problems with temperature-varying material properties~\cite{VargasVenegas2025}. In the order they appear, the $\rho c_p\frac{\partial T}{\partial t}$ term includes the unsteady energy storage, $\rho c_p\tilde{\vv}(x,t)\cdot\nabla T$ includes the temperature advection due to mesh motion, and $\nabla\cdot(\mathbf{k}\nabla T)$ includes the heat conduction. The boundary conditions for the energy equation include Neumann \cref{eqn_thermal_bc_neumann} on $\Gamma_q$ and Dirichlet \cref{eqn_thermal_bc_dirichlet} on $\Gamma_T$, and the initial condition is provided in \cref{eqn_thermal_ic}.
 
-the terms in \cref{eqn_thermal_pde} include the unsteady energy storage, heat conduction, temperature advection due to mesh motion, and source terms due to boundary conditions. The boundary conditions for the energy equation include Neumann \cref{eqn_thermal_bc_neumann} and Dirichlet \cref{eqn_thermal_bc_dirichlet} on $\Gamma_T$. 
-
-An Abirtrary Lagrangian-Eulerian (ALE) description is used to account for mesh motion due to surface recession, where $\tilde{\vv}(x,t)$ is the relative velocity of the material with respect to the mesh,
+An Abirtrary Lagrangian-Eulerian (ALE) description is used to account for mesh motion due to surface recession. The relative velocity of the material $\tilde{\vv}(x,t)$ with respect to the mesh is,
 \begin{equation}
     \tilde{\vv}(x,t) = \vv_s(x,t) - \vv_m(x,t)\label{eqn_relative_velocity}
 \end{equation}
@@ -40,7 +38,7 @@ The mesh motion is described by the steady-state pseudo-elasticity equation with
     \begin{align}
         \nabla\cdot\vsigma(\vw) &= \vzero,\quad \forall\:t\in\cT,\:\vx\in\Omega\quad\label{eqn_elasticity_pde}\\
         \vw(\vx,t) &= \vw_q(\vx,t),\quad \forall\:t\in\cT,\: \vx\in\Gamma_q\label{eqn_displacement_heated_bc}\\
-        \vw(\vx,t) &= \vzero,\quad \forall\:t\in\cT,\: \vx\notin \Gamma_q\label{eqn_displacement_unheated_bc}\\
+        \vw(\vx,t) &= \vzero,\quad \forall\:t\in\cT,\: \vx \in \Gamma_T\label{eqn_displacement_unheated_bc}\\
         \vw(\vx,0) &= \vzero,\quad \forall\:\vx\in\Omega\label{eqn_displacement_initial_condition}
     \end{align}
 \end{subequations}
@@ -56,39 +54,36 @@ The ``material'' properties for the mesh are chosen to tailor the mesh deformati
 
 For the pseudo-elasticity equations, the boundary conditions include prescribed displacements $\vw_q(x,t)$ on the heated boundary $\Gamma_q$ in \cref{eqn_displacement_heated_bc}, and zero displacements on the unheated boundaries in \cref{eqn_displacement_unheated_bc}. The initial condition for the mesh displacements is zero in \cref{eqn_displacement_initial_condition}. Particularly, the surface velocity due to the ablating material is a function of the surface temperature $T_q(x,t)$ for $x\in\Gamma_q$ on the heated boundary. For the $i$-th material component, the mesh velocity on the heated boundary is imposed based on the following relation,
 \begin{equation}
-    \hat{\vn}\cdot\vv_m(x,t) = f(T_q(x,t)),\quad x\in\Gamma_q\label{eqn_boundary_velocity}
+    \hat{\vn}\cdot\vv_m(x,t) = f_i(T_q(x,t)),\quad x\in\Gamma_q\label{eqn_boundary_velocity}
 \end{equation}
-where $\hat{\vn}$ is the unit normal vector on the heated boundary $\Gamma_q$, and $f$ is a function obtained from tabulated data for the material, commonly referred to as a B' table~\cite{Amar2016}. The B' table provides a model for the recession velocity as a function of the surface temperature, and is pre-computed based on high-fidelity simulations of the ablation process for a one-dimensional slab of the material, and is independent of the TPS geometry. Provided the surface velocity, the boundary condition in \cref{eqn_boundary_displacement} for the mesh displacements are computed by integrating the surface velocity over time,
+where $\hat{\vn}$ is the unit normal vector on the heated boundary $\Gamma_q$, and $f_i$ is a material-dependent function obtained from tabulated data, commonly referred to as a B' table~\cite{Amar2016}. The B' table provides a model for the recession velocity as a function of the surface temperature, and is pre-computed based on high-fidelity simulations or physical experiments for a one-dimensional slab of materials, and is independent of the TPS geometry. Provided the surface velocity, the boundary condition in \cref{eqn_boundary_displacement} for the mesh displacements are computed by integrating the surface velocity over time,
 \begin{equation}
     \vw_q(x,t) = \int_{0}^{t} \mathbf{v}_m(x,\tau)d\tau\label{eqn_boundary_displacement}
 \end{equation}
 
 \subsection{Full-Order Model: Finite-Element Method}\label{sec_fom}
-To obtain the full-order numerical solution, the \textit{energy equation} is spatially discretized using variational principles of the Discontinuous Galerkin (DG) method~\cite{Cohen2018}. Note that the choice of DG approach is mainly for theoretical convenience, and is exclusively performed on the energy equation, as it is the surface temperature that drives the ablation process. The equivalence between DG and FEM is noted upon their convergence. For the \textit{pseudo-elasticity equation} standard FEM is used to compute the mesh displacements based on the surface temperature provided by the DG solution of the energy equation~\cite{Bergel2022}.
 
-Consider a conforming mesh partition domain, where each element belongs to one and only one component. Denote the collection of all $M$ elements as $\left\{E_i\right\}_{i=1}^{M}$. In an element $E_i$, its shared boundaries with another element $E_j$, Neumann BC, and Dirichlet BC are denoted as $e_{ij}$, $e_{iq}$, and $e_{iT}$, respectively. Lastly, $\left|e\right|$ denotes the length $(n_d=2)$ or area $(n_d=3)$ of a component boundary $e$. For the $i$-th element, use a set of $P$ trial functions, such as polynomials, to represent the temperature distribution,
+The following discussion presents the FOM for predicting the transient thermo-ablative response of the TPS, based on a finite-element discretization of the governing equations in \cref{eqn_governing_equations}, including the energy equation and pseudo-elasticity equation.
+
+\paragraph*{Energy Equation} To obtain the full-order numerical solution, the \textit{energy equation} is spatially discretized using variational principles of the Discontinuous Galerkin (DG) method~\cite{Cohen2018}. Note that the choice of DG approach is mainly for theoretical convenience, and is exclusively performed on the energy equation, as it is the surface temperature that drives the ablation process; the equivalence between DG and FEM is noted upon their convergence. Consider a conforming mesh partition domain, where each element belongs to one and only one component. Denote the collection of all $M$ elements as $\left\{E_i\right\}_{i=1}^{M}$. In an element $E_i$, its shared boundaries with another element $E_j$, Neumann BC, and Dirichlet BC are denoted as $e_{ij}$, $e_{iq}$, and $e_{iT}$, respectively. Lastly, $\left|e\right|$ denotes the length $(n_d=2)$ or area $(n_d=3)$ of a component boundary $e$. For the $i$-th element, use a set of $P$ trial functions, such as polynomials, to represent the temperature distribution,
 \begin{equation}
     T_i(x,t) = \sum_{l=1}^{P} \phi_l^i(x) u_l^i(t) \equiv \vphi_i^\top(x)\vu_i(t),\quad i=1,2,\dots,M\label{eqn_element_temperature}
 \end{equation}
-Without loss of generality, the trial functions are assumed to be orthogonal, so that,
-\[
-    \int_{E_i}\phi_l^i(x)\phi_k^i(x)d\Omega = 0,\quad l\neq k
-\] 
-where $\delta_{lk}$ is the Kronecker delta function. Furthermore, for simplicity, choose $\phi_1^i=1$. Thus, by orthogonality,
-\[
-    \int_{E_i}\phi_1^i(x)d\Omega = |E_i|,\quad \int_{E_i}\phi_k^i(x)d\Omega = 0,\quad k=2,3,\dots,P
-\]
-Under the choice of basis functions, $u_1^i$ is simply the average temperature of element $E_i$, denoted as $\bu_i$.
+Then, the energy equation is collected into a block-system of ODEs for all the elements in the mesh,
+\begin{equation}
+    \vA\dot{\vu} = \left[\vB + \vC(\vu)\right]\vu + \mathbf{f}(t)\label{eqn_full_dg}
+\end{equation}
+where $\vu = \left[\vu_1, \vu_2, \ldots, \vu_M\right]^\top\in\mathbb{R}^{MP}$ includes all the DG variables, $\mathbf{f}\in\mathbb{R}^{MP}$ is the external forcing, and the system matrices $\vA$, $\vB$, and $\vC$ are the matrices due to heat capacity, heat conduction, and temperature advection due to mesh motion, respectively. Note that the advection matrix $\vC(\vu)$ is a function of the temperature $\vu$ through the BC in \cref{eqn_boundary_velocity}, and corresponds to the main source of non-linearity in the current TPS problem. A detailed derivation of \cref{eqn_full_dg} and their matrices is provided in Appendix~\ref{appendix_mathematical_details}.
 
-By standard variational processes, e.g.,~\cite{Cohen2018}, the element-wise governing equation is denoted as,
+\paragraph*{Pseudo-Elasticity Equation} The \textit{pseudo-elasticity equation} is spatially discretized using standard FEM~\cite{Bergel2022}. Define the scalar basis functions $\left\{\psi_q(x)\right\}_{q=1}^{Q}$ nodal variables $\left\{\vw_q\right\}_{q=1}^{Q}$ for the mesh displacements, where $Q$ is the number of basis functions. Express the mesh displacements $\vw$ at time $t$ as,
 \begin{equation}
-    \vA_i\dot{\vu}_i = \left(\vB_i + \vC_i\right)\vu_i + \sumneighbordirichlet\left(\vB^i_{ij}\vu_i + \vB^{j}_{ij}\vu_j\right) + \vf_i(t),\quad\text{for }i=1,2,\dots,M\label{eqn_element_dg}
+    \vw(x,t) \approx \sum_{q=1}^{Q} \psi_q(x) \vw_q\label{eqn_mesh_fem_approximation}
 \end{equation}
-which is collected as the following ODE for the all the elements in the mesh,
+Substituting into the Galerkin weak form of the steady pseudo-elasticity equation, the following linear system of equations is obtained for the nodal displacements,
 \begin{equation}
-    \vA(\vu)\dot{\vu} = \left[\vB(\vu) + \vC(\vu)\right]\vu + \mathbf{f}(t)\label{eqn_full_dg}
+    \vK\vw = \vg\label{eqn_fem_elasticity}
 \end{equation}
-where $\vu = \left[\vu_1, \vu_2, \ldots, \vu_M\right]^\top\in\mathbb{R}^{MP}$ includes all the DG variables, $\mathbf{f}\in\mathbb{R}^{MP}$ is the external forcing, and the system matrices $\vA$, $\vB$, and $\vC$ are the matrices due to heat capacity, heat conduction, and temperature advection due to mesh motion, respectively. A detailed derivation of \cref{eqn_element_dg,eqn_full_dg} and their matrices is provided in Appendix~\ref{appendix_mathematical_details}.
+where $\vK\in\mathbb{R}^{dQ\times dQ}$ is the global stiffness matrix for the mesh for $d$ dimensions, and $\vg$ is the global force vector due to the boundary conditions. The boundary conditions are imposed by modifying the stiffness matrix $\vK$ and the displacement vector $\vw$. The definition of the stiffness and forcing vectors follow the standard FEM procedure as detailed in the SIERRA mechanics module with quadrilateral elements on a structured mesh~\cite{Bergel2022}. 
 
 \subsection{Reduced-Physics Model}
 The RPM for predicting the response of the ablating TPS consists of two components: (1) the \textit{lumped-capacitance model} (LCM), and (2) the \textit{surface recession model} (SRM). The LCM is described as a first-order system of ODEs for predicting the average temperatures inside the components of the TPS, and provides a low-fidelity (under estimate) for the component's surface temperature. The SRM provides a relation between the surface temperature and the surface recession velocity based on pre-computed B' tables for the material, enabling the computation of one-dimensional surface displacements. The LCM and SRM are combined to define the RPM, providing low-fidelity estimates for the temperatures and surface recession of the ablating TPS.

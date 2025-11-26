@@ -34,15 +34,23 @@ Furthermore, in the bi-linear form, the terms associated with $\sigma$ are intro
 
 \subsubsection{Discontinuous Galerkin Model}
 
-Next, the DG-based model is written in an element-wise form. For the $i$-th element, use a set of $P$ trial functions to represent the temperature as in \cref{eqn_element_temperature}. Without loss of generality, the trial functions are assumed to be orthogonal, so that $\int_{E^{(i)}} \phii_k(x) \phii_l(x) dx = \left|\Ei\right|\delta_{kl}$, where $\left|\Ei\right|$ is the area $(n_d=2)$ or volume $(n_d=3)$ of the $i$-th element, and $\delta_{kl}$ is the Kronecker delta.
+Next, the DG-based model is written in an element-wise form. For the $i$-th element, use a set of $P$ trial functions to represent the temperature as in \cref{eqn_element_temperature}. Without loss of generality, the trial functions are assumed to be orthogonal, so that,
+\[
+    \int_{E_i}\phi_l^i(x)\phi_k^i(x)d\Omega = 0,\quad l\neq k
+\] 
+where $\left|E_i\right|$ is the area $(n_d=2)$ or volume $(n_d=3)$ of the $i$-th element, and $\delta_{lk}$ is the Kronecker delta function. Furthermore, for simplicity, choose $\phi_1^i=1$. Thus, by orthogonality,
+\[
+    \int_{E_i}\phi_1^i(x)d\Omega = |E_i|,\quad \int_{E_i}\phi_k^i(x)d\Omega = 0,\quad k=2,3,\dots,P
+\]
+Under the choice of basis functions, $u_1^i$ is simply the average temperature of element $E_i$, denoted as $\bu_i$.
 
 Using test functions same as trial functions, the dynamics $\vu^{(i)}$ is obtained by evaluating the element-wise bi-linear forms,
 \begin{equation}
     a_{\epsilon,i}(\phik^{(i)},T^{(i)}) = L_i(\phik^{(i)}),\quad k=1,2,\dots,P
 \end{equation}
-The above procedure yields,
+Therefore, by standard variational principles, e.g.,~\cite{Cohen2018}, the element-wise governing equation is denoted as,
 \begin{equation}
-    \vA^{(i)}\dot{\vu}^{(i)} = \left(\vB^{(i)} + \vC^{(i)}(t)\right)\vui + \sumneighbordirichlet\left(\vB^{(i)}_{ij}\vui + \vB^{(j)}_{ij}\vuj\right) + \vf^{(i)}(t)\label{eqn_element_wise_model}
+    \vA_i\dot{\vu}_i = \left(\vB_i + \vC_i\right)\vu_i + \sumneighbordirichlet\left(\vB^i_{ij}\vu_i + \vB^{j}_{ij}\vu_j\right) + \vf_i(t),\quad\text{for }i=1,2,\dots,M\label{eqn_element_wise_model}
 \end{equation}
 where for $k,l=1,2,\dots,P$,
 \begin{subequations}
@@ -59,7 +67,7 @@ The matrices $\vA^{(i)}\in\mathbb{R}^{P\times P}$, $\vB^{(i)}\in\mathbb{R}^{P\ti
 
 For compactness, the element-wise model in \cref{eqn_element_wise_model} is also written in matrix form,
 \begin{equation}
-    \vA(\dot{\vu}) = \left[\vB(\vu) + \vC(\vu)\right]\vu + \mathbf{f}(t)\label{eqn_complete_model}
+    \vA\dot{\vu} = \left[\vB + \vC(\vu)\right]\vu + \mathbf{f}(t)\label{eqn_complete_model}
 \end{equation}
 where $\vu = \left[\vu^{(1)},\vu^{(2)},\cdots,\vu^{(M)}\right]^T\in\mathbb{R}^{MP}$ includes all DG variables, $\vf=\left[\vf^{(1)},\vf^{(2)},\dots,\vf^{(M)}\right]^T\in\mathbb{R}^{MP}$, $\vA$ and $\vC$ are matrices of $M$ diagonal blocks whose $i$-th blocks are $\vAi$ and $\vCi$, and $\vB$ is a matrix of $M\times M$ blocks whose $(i,j)$-th block is,
 \begin{equation}
@@ -68,7 +76,7 @@ where $\vu = \left[\vu^{(1)},\vu^{(2)},\cdots,\vu^{(M)}\right]^T\in\mathbb{R}^{M
             \vBj_{ij}, & i\neq j
         \end{cases}
 \end{equation}
-The dependency of $\vA$, $\vB$, and $\vC$ on $\vu$ is explicitly noted in \cref{eqn_complete_model}, which is the source of non-linearity in the current TPS problem. Moreover, the mesh velocity $\vv$ varies with space and time, and thus the advection matrix $\vC$ varies with time as a function of $q_b$.
+The dependency of $\vC$ on $\vu$ is explicitly noted in \cref{eqn_complete_model}, which is the main source of non-linearity in the current TPS problem. Moreover, the mesh velocity $\vv$ varies with space and time, and thus the advection matrix $\vC$ varies with time as a function of the surface temperature $T_q(x,t)$.
 
 \subsection{Coarse-Graining of Dynamics}
 
