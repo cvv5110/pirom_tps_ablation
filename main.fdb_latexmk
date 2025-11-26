@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1764181449.48449 "main.aux" "main.bbl" "main" 1764181605.75506 0
+["bibtex main"] 1764182578.12341 "main.aux" "main.bbl" "main" 1764182834.04835 0
   "./references.bib" 1764002031.64971 8234 aaa8b5846fae636d6e3671ee160f704f ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1764181605.31727 18032 82939c4b24bc95c763a6250bbcfc34a3 "pdflatex"
+  "main.aux" 1764182833.63028 18032 31b08bd6167108a7e9894d0c1a3e179c "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1764181589.52046 "/home/cavarga/pirom_tps_ablation/main.tex" "main.pdf" "main" 1764181605.75626 0
+["pdflatex"] 1764182817.57612 "/home/cavarga/pirom_tps_ablation/main.tex" "main.pdf" "main" 1764182834.0489 0
   "/etc/texmf/web2c/texmf.cnf" 1738619132.31217 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/cavarga/pirom_tps_ablation/main.tex" 1764173154.04288 7102 65a43e842ea6fa6c1b53f4e5fdabb4a7 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -131,13 +131,13 @@
   "figs/surface_temperature_test_perturbed_ablation_3.png" 1763407213.61439 716028 ae46735b3f5eefbc003ebee0219cf4c5 ""
   "figs/temperature_observables.png" 1763396155.37582 857114 65421e22f83046278c0ef7b1bbd42a66 ""
   "figs/trinity.png" 1763999736.40793 483377 9c2295355bcfc59fb9ddebb21acf3832 ""
-  "main.aux" 1764181605.31727 18032 82939c4b24bc95c763a6250bbcfc34a3 "pdflatex"
-  "main.bbl" 1764181449.61889 4719 9e23bbd2e03b6ad62c5db7bb82f4b94b "bibtex main"
+  "main.aux" 1764182833.63028 18032 31b08bd6167108a7e9894d0c1a3e179c "pdflatex"
+  "main.bbl" 1764182578.25666 4719 9e23bbd2e03b6ad62c5db7bb82f4b94b "bibtex main"
   "main.tex" 1764173154.04288 7102 65a43e842ea6fa6c1b53f4e5fdabb4a7 ""
-  "src/appendix_details.tex" 1764173228.44406 16922 71f4d9d55c88efb7678c694ae3087822 ""
+  "src/appendix_details.tex" 1764182816.36124 16691 32328ccaa28a3dbc664e15390dfcb3c2 ""
   "src/sec_conclusion.tex" 1763410157.40278 1878 1d452280f56eafd1e84ca2fc264bbf76 ""
   "src/sec_intro.tex" 1764173154.04488 6748 d98d4ab8ddf9761e3d2bcc5dfc970c17 ""
-  "src/sec_pirom.tex" 1764181589.42923 19940 a47cf72ea99b88ec642fad167da3d24e ""
+  "src/sec_pirom.tex" 1764182119.18154 19940 a47cf72ea99b88ec642fad167da3d24e ""
   "src/sec_problem.tex" 1764178760.69334 20130 8f62b497228dc43593a3753dc0490e48 ""
   "src/sec_results.tex" 1764181023.32385 15874 71aea0117dd1ca5c9d638b831a17f0b3 ""
   (generated)
