@@ -73,6 +73,11 @@ Eric Parish and Karthik Duraisamy.
 \newblock {\em Coarse-Graining Turbulence Using the Mori–Zwanzig Formalism}.
 \newblock Cambridge University Press, Cambridge, 2025.
 
+\bibitem{Rasmussen2006}
+Carl~Edward Rasmussen and Christopher K.~I. Williams.
+\newblock {\em Gaussian Processes for Machine Learning}.
+\newblock The MIT Press, 2006.
+
 \bibitem{Thelen2022}
 Adam Thelen, Xiaoge Zhang, Olga Fink, Yan Lu, Sayan Ghosh, Byeng~D. Youn, Michael~D. Todd, Sankaran Mahadean, Chao Hu, and Zhen Hu.
 \newblock A comprehensive review of digital twin -- part 1: modeling and twinning enabling technologies.

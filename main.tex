@@ -79,7 +79,7 @@
 \newcommand{\vcF}{\boldsymbol{\mathcal{F}}}
 \newcommand{\phik}{\phi_k}
 \newcommand{\phil}{\phi_l}
-\newcommand{\Ei}{E^{(i)}}
+\newcommand{\Ei}{E_i}
 \newcommand{\dirichletset}{\left\{T_b\right\}}
 \newcommand{\eij}{e_{ij}}
 \newcommand{\jump}[1]{\left[#1\right]}
@@ -89,7 +89,7 @@
 \newcommand{\sumneighbordirichlet}{\sum_{j\in\mathcal{N}_i\cup\left\{T_b\right\}}}
 \newcommand{\eiq}{e_{iq}}
 \newcommand{\eiT}{e_{iT}}
-\newcommand{\intEi}{\int_{E^{(i)}}}
+\newcommand{\intEi}{\int_{E_i}}
 \newcommand{\barui}{\bar{u}^{(i)}}
 \newcommand{\baruj}{\bar{u}^{(j)}}
 \newcommand{\Rij}{R_{ij}}
@@ -160,7 +160,7 @@
 \maketitle
 
 \begin{abstract}
-    This work presents a \textit{physics-infused reduced-order modeling} (PIROM) framework towards design, analysis, and optimization of non-decomposing ablating hypersonic thermal protection systems (TPS), and is demonstrated via the modeling of transient thermo-ablative responses of multi-layered hypersonic TPS. The PIROM architecture integrates a reduced-physics backbone, based on the lumped-capacitance model (LCM) and a surface recession model (SRM), with data-driven correction dynamics formulated via a coarse-graining approach rooted in the Mori-Zwanzig formalism. The LCM is coupled to the SRM to capture the one-dimensional surface recession of the ablating TPS as a function of the surface temperature. While the LCM and SRM capture the dominant physics of the ablating TPS response, the correction terms compensate for residual dynamics arising from higher-order non-linear interactions and temperature-advection effects due to surface recession. The PIROM consistently achieves errors of $\approx 0.5\%$ for a wide range of extrapolative settings of design parameters involving time-and-space varying boundary conditions and SRM models, and improves by an order of magnitude by the LCM alone. Moreover, the PIROM delivers online evaluations that are two orders of magnitude faster than the full-order model (FOM). These results demonstrate that PIROM effectively reconciles the trade-offs between accuracy, generalizability, and efficiency, providing a promising framework for optimizing multi-physical dynamical systems, such as TPS, under diverse operating conditions.
+    This work presents a \textit{physics-infused reduced-order modeling} (PIROM) framework towards design, analysis, and optimization of non-decomposing ablating hypersonic thermal protection systems (TPS), and is demonstrated via the modeling of transient thermo-ablative responses of multi-layered hypersonic TPS. The PIROM architecture integrates a \textit{reduced-physics model} (RPM) as the building block, which is based on the \textit{lumped capacitance model} (LCM) coupled to a \textit{surface recession model} (SRM). The RPM provides a low-fidelity estimate of the thermo-ablative response of the TPS, based on average temperatures and one-dimensional surface displacements. This RPM is extended with data-driven hidden dynamics that are formulated via a systematic coarse-graining approach rooted in the \textit{Mori-Zwanzig} (MZ) formalism, and that are learned from high-fidelity simulation data. Therefore, while the LCM and SRM capture the dominant physics of the ablating TPS response, the correction terms compensate for residual dynamics arising from higher-order non-linear interactions and temperature-advection effects due to surface recession. The trained PIROM consistently achieves errors of $\approx 0.5\%$ for a wide range of extrapolative settings of design parameters involving time-and-space varying boundary conditions and SRM models, and improves by an order of magnitude by the LCM alone. Moreover, the PIROM delivers RPM-level computational costs, enabling evaluations that are two orders of magnitude faster thatn the high-fidelity full-order model (FOM). These results demonstrate that PIROM effectively reconciles the trade-offs between accuracy, generalizability, and efficiency, providing a promising framework for optimizing multi-physical dynamical systems, such as TPS, under diverse operating conditions.
 \end{abstract}
 
 \input{./src/sec_intro}

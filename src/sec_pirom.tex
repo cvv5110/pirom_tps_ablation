@@ -48,19 +48,19 @@ where $\vr^{(1)}(\bvu,t)$ is resolved dynamics that depends on $\bvu$ only, and 
 It follows from our previous work in Ref.~\cite{VargasVenegas2025} that the resolved dynamics is exactly the LCM, where the advection term reduces to zero, i.e., $\bvC(\bvu) = \vzero$, as shown in the Appendix. Using the notation from \cref{eqn_lcm}, it follows that,
 \begin{align}
     \vr^{(1)}(\bvu,t) &= \bvA(\vw)^{-1}\bvB(\vw)\bvu + \bvA(\vw)^{-1}\bvC(\bvu)\bvu + \bvA(\vw)^{-1}\bvf(\bvu)\notag\\
-    &= \bvA(\vw)^{-1}\bvB(\vw)\bvu + \bvA^{-1}\bvf(t)\label{eqn_resolved_dynamics_no_advection}
+    &= \bvA(\vw)^{-1}\bvB(\vw)\bvu + \bvA(\vw)^{-1}\bvf(t)\label{eqn_resolved_dynamics_no_advection}
 \end{align}
 where the following relations hold,
 \begin{subequations}
     \begin{align}
-        \bvA(\vw) &= \vW\left(\vPhiplus\vA(\vw)^{-1}\vPhi\right)^{-1} &\quad \bvC(\bvu) &= \vzero \\
-        \bvB(\vw) &= \vW\vPhiplus\vB(\vw)\vPhi &\quad \bvf(t) &= \vW\vPhiplus\vf
+        \bvA(\vw) &= \vW\left(\vPhiplus\vA^{-1}\vPhi\right)^{-1} &\quad \bvC(\bvu) &= \vzero \\
+        \bvB(\vw) &= \vW\vPhiplus\vB\vPhi &\quad \bvf(t) &= \vW\vPhiplus\vf
     \end{align}\label{eqn_coarse_grained_matrices}
 \end{subequations}
-where $\vW\in\mathbb{R}^{N\times N}$ is a diagonal matrix with the $i$-th element as $\left[\vW\right]_{ii} = \left|\cV_k\right|$ if $i\in\cV_k$. The examination of the second residual term $\vr^{(2)}(\vu,t)$ in \cref{eqn_coarse_grained_dynamics} is shown in the Appendix, and demonstrates that the physical sources of missing dynamics in the LCM include: the approximation of non-uniform temperature within each component as a constant, and the elimination of the advection term due to coarse-graining. In sum, the above results not only show that the LCM is a result of coarse-graining of the full-order DG-FEM, but also reveal the discrepancies between the LCM and the DG-FEM. These discrepancies propagate into the SRM, which as a result of the averaging in the LCM formulation, under-predicts the surface recession rates. In the subsequent section, the discrepancies in the LCM are corrected to formulate the PIROM.
+where $\vW\in\mathbb{R}^{N\times N}$ is a diagonal matrix with the $i$-th element as $\left[\vW\right]_{ii} = \left|\cV_k\right|$ if $i\in\cV_k$. The examination of the second residual term $\vr^{(2)}(\vu,t)$ in \cref{eqn_coarse_grained_dynamics} is shown in the Appendix, and demonstrates that the physical sources of missing dynamics in the LCM include: the approximation of non-uniform temperature within each component as a constant, and the elimination of the advection term due to coarse-graining. In sum, the above along with the derivations in the Appendix not only show that the LCM is a result of coarse-graining of the full-order DG-FEM, but also reveal the discrepancies between the LCM and the DG-FEM. These discrepancies propagate into the SRM, which as a result of the averaging in the LCM formulation, under-predicts the surface recession rates. In the subsequent section, the discrepancies in the LCM are corrected to formulate the PIROM.
 
 \subsection{Physics-Infusion Via Mori-Zwanzig Formalism}
-The Mori-Zwanzig (MZ) formalism is an operator-projection technique used to derive ROMs for high-dimensional dynamical systems, especially in statistical mechanics and fluid dynamics~\cite{Parish2017a,Parish2017,Duraisamy2025}. It provides an exact reformulation of a high-dimensional Markovian dynamical system, into a low-dimensional observable non-Markovian dynamical system. The proposed ROM is subsequently developed based on the approximation to the non-Markovian term in the observable dynamics. Particularly, \cref{eqn_coarse_grained_dynamics} shows that the DG-FEM dynamics can be decomposed into the resolved dynamics $\vr^{(1)}(\vu,t)$ and the orthogonal dynamics $\vr^{(2)}(\vu,t)$, in the sense of $\cP\vr^{(2)}=0$. In this case, the MZ formalism can be invoked to express the dynamics $\bvu$ in terms of $\bvu$ alone as the projected Generalized Langevin Equation (GLE)~\cite{Parish2017a,Parish2017,Duraisamy2025},
+The Mori-Zwanzig (MZ) formalism is an operator-projection technique used to derive ROMs for high-dimensional dynamical systems, especially in statistical mechanics and fluid dynamics~\cite{Parish2017a,Parish2017,Duraisamy2025}. It provides an exact reformulation of a high-dimensional Markovian dynamical system, into a low-dimensional observable non-Markovian dynamical system. The proposed ROM is subsequently developed based on the approximation to the non-Markovian term in the observable dynamics. Particularly, \cref{eqn_coarse_grained_dynamics} shows that the DG-FEM dynamics can be decomposed into the resolved dynamics $\vr^{(1)}(\bvu,t)$ and the orthogonal dynamics $\vr^{(2)}(\vu,t)$, in the sense of $\cP\vr^{(2)}=0$. In this case, the MZ formalism can be invoked to express the dynamics $\bvu$ in terms of $\bvu$ alone as the projected Generalized Langevin Equation (GLE)~\cite{Parish2017a,Parish2017,Duraisamy2025},
 \begin{equation}
     \dot{\bvu}(t) = \vr^{(1)}(\bvu,t) + \int_{0}^{t}\tvkappa(t,s,\bvu)ds\label{eqn_gle}
 \end{equation}
@@ -184,7 +184,7 @@ Learning of the PIROM is achieved through a gradient-based neural-ODE-like appro
 \begin{equation}
     \vcD\left(\dot{\vy},\vy,\vxi,\vcF;\vTheta\right) = \vzero\label{eqn_pirom_compact}
 \end{equation}
-where $\vxi$ defines the model parameters, i.e., material properties and B' tables, while $\vcF$ represents the forcing terms, i.e., the boundary conditions.
+where $\vxi$ defines the model parameters, i.e., SRM parameters, while $\vcF$ represents the forcing terms, i.e., the boundary conditions.
 
 Consider a dataset of $N_s$ high-fidelity \textit{surface temperature} observable trajectories $\vz_{\text{HF}}$, sampled at $p$ time instances $\{t_k\}_{k=0}^{p-1}$, for different parameter settings $\{\vxi^{(l)}\}_{l=1}^{N_s}$ and forcing functions $\{\vcF^{(l)}(t)\}_{l=1}^{N_s}$. The dataset is expressed as,
 \begin{equation}
@@ -212,3 +212,4 @@ Once $\vlambda$ is solved, the gradient is computed as,
 \begin{equation}
     \nabla_{\vTheta}\cJ = \frac{1}{N_s}\sum_{l=1}^{N_s}\int_{t_0}^{t_f}\left(\frac{\partial\ell}{\partial\vTheta} + \left(\vlambda^{(l)}\right)^\top\frac{\partial\vcD}{\partial\vTheta}\right)dt
 \end{equation}
+The PIROM parameters $\vTheta$ are updated via stochastic gradient descent using ML optimizers such as Adam. The learning procedure iterates between solving the PIROM in \cref{eqn_pirom_compact} forward in time, solving the adjoint equation in \cref{eqn_adjoint_equation} backward in time, and updating the parameters $\vTheta$ until convergence.
