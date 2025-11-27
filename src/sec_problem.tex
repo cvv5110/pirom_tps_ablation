@@ -90,7 +90,7 @@ The RPM for predicting the response of the ablating TPS consists of two componen
 
 \subsubsection{Surface Recession Model}
 
-The mesh displacements $\vd$ are constrained to be \textit{one-dimensional} on the heated boundary $\Gamma_q$, i.e., $w_i(x,t) = \vd(x,t)\cdot\hat{\vn}$, where $\hat{\vn}$ is the unit normal vector on the heated boundary $\Gamma_q$. Displacements perpendicular to $\hat{\vn}$ are assumed small and are neglected. Let $\vw = \left[w_1,w_2,\dots,w_{\tN}\right]^\top\in\mathbb{R}^{\tN}$ include the one-dimensional displacements for the $\tN$ ablating components on the heated boundary, where $\tN\leq N$. Then the SRM is described as,
+The mesh displacements $\vd$ are constrained to be \textit{one-dimensional} on the heated boundary $\Gamma_q$, i.e., $w_i(x,t) = \vd(x,t)\cdot\hat{\vn}_i$, where $\hat{\vn}_i$ is the unit normal vector on the heated boundary $\Gamma_{q,i}$. Displacements perpendicular to $\hat{\vn}_i$ for $i=1,\dots,\tilde{N}$ are assumed to be small and thus neglected. Let $\vw = \left[w_1,w_2,\dots,w_{\tN}\right]^\top\in\mathbb{R}^{\tN}$ include the one-dimensional displacements for the $\tN$ ablating components on the heated boundary, where $\tN\leq N$. Then the SRM is described as,
 \begin{equation}
     \dot{\vw} = \vXi\vu - \tvf\label{eqn_srm}
 \end{equation}

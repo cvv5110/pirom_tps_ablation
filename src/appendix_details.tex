@@ -44,26 +44,26 @@ where $\left|E_i\right|$ is the area $(n_d=2)$ or volume $(n_d=3)$ of the $i$-th
 \]
 Under the choice of basis functions, $u_1^i$ is simply the average temperature of element $E_i$, denoted as $\bu_i$.
 
-Using test functions same as trial functions, the dynamics $\vu^{(i)}$ is obtained by evaluating the element-wise bi-linear forms,
+Using test functions same as trial functions, the dynamics $\vu_i$ is obtained by evaluating the element-wise bi-linear forms,
 \begin{equation}
-    a_{\epsilon,i}(\phik^{(i)},T^{(i)}) = L_i(\phik^{(i)}),\quad k=1,2,\dots,P
+    a_{\epsilon,i}(\phik^{i},T^{i}) = L_i(\phik^{i}),\quad k=1,2,\dots,P
 \end{equation}
 Therefore, by standard variational principles, e.g.,~\cite{Cohen2018}, the element-wise governing equation is denoted as,
 \begin{equation}
-    \vA_i\dot{\vu}_i = \left(\vB_i + \vC_i\right)\vu_i + \sumneighbordirichlet\left(\vB^i_{ij}\vu_i + \vB^{j}_{ij}\vu_j\right) + \vf_i(t),\quad\text{for }i=1,2,\dots,M\label{eqn_element_wise_model}
+    \vA^i\dot{\vu}_i = \left(\vB^i + \vC^i\right)\vu_i + \sumneighbordirichlet\left(\vB^i_{ij}\vu_i + \vB^{j}_{ij}\vu_j\right) + \vf_i(t),\quad\text{for }i=1,2,\dots,M\label{eqn_element_wise_model}
 \end{equation}
 where for $k,l=1,2,\dots,P$,
 \begin{subequations}
     \begin{align}
-        \left[\vA^{(i)}\right]_{kl} &= \intEi\rho c_p\phik^{(i)}\phil^{(i)}d\Ei\\
-        \left[\vB^{(i)}\right]_{kl} &= -\intEi\left(\nabla\phik^{(i)}\right)\cdot\left(\vk\nabla\phil^{(i)}\right)d\Ei\\
-        \left[\vC^{(i)}\right]_{kl} &= \intEi\rho c_p \phik^{(i)}\vv^{(i)}\cdot\nabla\phil^{(i)}d\Ei\label{eqn_advection_matrix_element_kl}\\
-        \left[\vBi_{ij}\right] &= \int_{\eij}\average{\vk\nabla\phik^{(i)}\cdot\hat{n}}\phil^{(i)} - \sigma\jump{\phik^{(i)}}\phil^{(i)}d\eij\\
-        \left[\vBj_{ij}\right] &= \int_{\eij}-\average{\vk\nabla\phik^{(i)}\cdot\hat{n}}\phil^{(j)} + \sigma\jump{\phik^{(i)}}\phil^{(j)}d\eij\\
-        \left[\vf^{(i)}\right]_k &= \int_{\eiq}\phik^{(i)}q_bd\eiq + \sigma\int_{\eiT}\phik^{(i)}d\eiT
+        \left[\vA^{i}\right]_{kl} &= \intEi\rho c_p\phi_{k}^{i}\phi_{l}^{i}d\Ei\\
+        \left[\vB^{i}\right]_{kl} &= -\intEi\left(\nabla\phi_{k}^{i}\right)\cdot\left(\vk\nabla\phi_{l}^{i}\right)d\Ei\\
+        \left[\vC^{i}\right]_{kl} &= \intEi\rho c_p \phi_{k}^{i}\vv^{i}\cdot\nabla\phi_{l}^{i}d\Ei\label{eqn_advection_matrix_element_kl}\\
+        \left[\vB^{i}_{ij}\right] &= \int_{\eij}\average{\vk\nabla\phi_{k}^{i}\cdot\hat{n}}\phi_{l}^{i} - \sigma\jump{\phi_{k}^{i}}\phi_{l}^{i}d\eij\\
+        \left[\vB^{j}_{ij}\right] &= \int_{\eij}-\average{\vk\nabla\phi_{k}^{i}\cdot\hat{n}}\phi_{l}^{j} + \sigma\jump{\phi_{k}^{i}}\phi_{l}^{j}d\eij\\
+        \left[\vf^{i}\right]_k &= \int_{\eiq}\phi_{k}^{i}q_bd\eiq + \sigma\int_{\eiT}\phi_{k}^{i}d\eiT
     \end{align}
 \end{subequations}
-The matrices $\vA^{(i)}\in\mathbb{R}^{P\times P}$, $\vB^{(i)}\in\mathbb{R}^{P\times P}$, and $\vC^{(i)}\in\mathbb{R}^{P\times P}$ are respectively the capacitance, conductivity, and advection matrices for element $i$. These matrices depend on $\rho$, $c_p$, $\vk$, and $\vv$, and hence can be non-linear functions of $\vu^{(i)}$. Since the trial functions are orthogonal, if $\rho c_p$ is constant within an element, $\vAi$ is diagonal; otherwise, $\vA_i$ is symmetric and positive definite as $\rho c_p > 0$.
+The matrices $\vA^{i}\in\mathbb{R}^{P\times P}$, $\vB^{i}\in\mathbb{R}^{P\times P}$, and $\vC^{i}\in\mathbb{R}^{P\times P}$ are respectively the capacitance, conductivity, and advection matrices for element $i$. These matrices depend on $\rho$, $c_p$, $\vk$, and $\vv$, and hence can be non-linear functions of $\vu_i$. Since the trial functions are orthogonal, if $\rho c_p$ is constant within an element, $\vA^i$ is diagonal; otherwise, $\vA^i$ is symmetric and positive definite as $\rho c_p > 0$.
 
 For compactness, the element-wise model in \cref{eqn_element_wise_model} is also written in matrix form,
 \begin{equation}
@@ -80,7 +80,7 @@ The dependency of $\vC$ on $\vu$ is explicitly noted in \cref{eqn_complete_model
 
 \subsection{Coarse-Graining of Dynamics}
 
-The LCM is obtained by coarse-graining the full-order DG-FEM. This coarse-graining procedure produces resolved $\vr^{(1)}(\vu,t)$ and residual $\vr^{(2)}(\vu,t)$ dynamics as in \cref{eqn_coarse_grained_dynamics}. This section presents the detail derivations and magnitude analysis for the resolved and residual dynamics.
+The LCM is obtained by coarse-graining the full-order DG-FEM. This coarse-graining procedure produces resolved $\vr^{(1)}(\bvu,t)$ and residual $\vr^{(2)}(\vu,t)$ dynamics as in \cref{eqn_coarse_grained_dynamics}. This section presents the detail derivations and magnitude analysis for the resolved and residual dynamics.
 
 \subsubsection{Resolved Dynamics}
 
@@ -102,7 +102,7 @@ Using \cref{eqn_projection_operator}, the resolved dynamics is computed as follo
         \end{array}
     \end{align}
 \end{subequations}
-Detailed derivations for the \#1, \#2, and \#4 terms can be found in Ref.~\cite{VargasVenegas2025} for the case of temperature-varying matrices. The effects of coarse-graining on the advection term \#3 are analyzed next.
+Detailed derivations for the \#1, \#2, and \#4 terms can be found in Ref.~\cite{VargasVenegas2025} for the case of temperature-varying matrices, where it is shown that coarse-graining the capacitance, conductivity, and forcing terms result exactly in the LCM matrices. The remaining term \#3 is analyzed next.
 
 \paragraph*{\textit{Term \#3}} The $\vC(\vu)\in\mathbb{R}^{MP\times MP}$ matrix contains $M$ diagonal of size $P\times P$, since the basis functions are defined locally on each element. Therefore, $\left[\vC(\vu)\right]_{ij} = \vzero$ for all $i \neq j$ with $i,j=1,2,\dots,M$. It follows that for $k,l=1,2,\cdots,N$,
 \begin{subequations}
@@ -128,7 +128,7 @@ Next, the magnitude of the residual dynamics $\vr^{(2)}(\vu,t)$ is analyzed to p
 \begin{subequations}
 \begin{align}
     \vr^{(2)}(\vu,t) &= \dot{\bvu} - \vr^{(1)}(\bvu,t) \\ 
-    &= \vPhiplus\vr(\vu,t) - \vr^{(1)}(\vu,t)\\
+    &= \vPhiplus\vr(\vu,t) - \vr^{(1)}(\bvu,t)\\
     &= \begin{array}[t]{@{}l@{\;}c@{\;}l@{}}
        \underbrace{\vPhiplus\vA^{-1}\vB\vu - \bvA(\vw)^{-1}\bvB(\vw)\bvu}_{\text{\#1}}
        & + &
@@ -138,7 +138,7 @@ Next, the magnitude of the residual dynamics $\vr^{(2)}(\vu,t)$ is analyzed to p
        \end{array}
 \end{align}
 \end{subequations}
-The magnitude analysis for terms \#1 and \#3 can be found in Ref.~\cite{VargasVenegas2025}. The analysis for term \#2 is presented next. Let $\vD(\bvu) = \vA^{-1}\vP\vC(\vPhi\bvu)$ so that,
+The magnitude analysis for terms \#1 and \#3 can be found in Ref.~\cite{VargasVenegas2025} for temperature-varying material properties. The remaining term \#2 is analyzed next. Let $\vD(\bvu) = \vA^{-1}\vP\vC(\vPhi\bvu)$ so that,
 \begin{subequations}
     \begin{align}
         &\vPhiplus\vA^{-1}\vC(\vu)\vu - \bvA(\vw)^{-1}\bvC(\bvu)\bvu\\
@@ -154,28 +154,28 @@ where $\vP=\vPhi\vPhiplus$. Thus,
         &\leq \left\|\vPhiplus\right\|\underbrace{\left\|\vA^{-1}\vC(\vu)\vu - \vD(\bvu)\vu\right\|}_{\#1} + \left\|\vPhiplus\vD(\bvu)\right\|\underbrace{\left\|\vu - \vPhi\vPhiplus\vu\right\|}_{\#2}
     \end{align}
 \end{subequations}
-where term \#2 is due to the approximation of non-uniform temperature as constants, and term \#1 is the error in the advection dynamics due to coarse-graining. 
+Similar to the analysis in Ref.~\cite{VargasVenegas2025}, term \#2 is due to the approximation of non-uniform temperature as constants in each component, and the term \#1 is the error in the advection effects due to such approximation. 
 
 \subsection{Lumped Capacitance Model}
 
-The following assumptions are employed: (1) the temperature in component $(i)$ is described by a scalar time-varying average temperature $\bar{u}^{(i)}$, (2) between neighboring components $(i)$ and $(j)$ the heat flux is approximated as,
+The following assumptions are employed: (1) the temperature in the $i$-component is described by a scalar time-varying average temperature $\bar{u}_i$, (2) between neighboring components $(i)$ and $(j)$ the heat flux is approximated as,
 \begin{equation}
-    q_{ij} = \frac{\baruj - \barui}{R_{ij}}
+    q_{ij} = \frac{\bar{u}_j - \bar{u}_i}{R_{ij}}
 \end{equation}
-where $R_{ij}$ is the thermal resistance. Empirically, for a component of isotropic heat conductivity $k$, length $\ell$, and cross-section area $A$, the thermal resistance is $R=\ell/kA$. Between components $i$ and $j$, define $R_{ij}=R_{i} + R_{j}$. In addition, the heat flux due to Dirichlet boundary condition is computed as $q_{iT} = (T_b - \barui)/R_{i}$.
+where $R_{ij}$ is the thermal resistance. Empirically, for a component of isotropic heat conductivity $k$, length $\ell$, and cross-section area $A$, the thermal resistance is $R=\ell/kA$. Between components $i$ and $j$, define $R_{ij}=R_{i} + R_{j}$. In addition, the heat flux due to Dirichlet boundary condition is computed as $q_{iT} = (T_b - \bar{u}_i)/R_{i}$.
 
 At component $i$, the dynamics of LCM are given by,
 \begin{subequations}
     \begin{align}
-        \int_{\Ei}\rho c_p \dot{\bar{u}}^{(i)} d\Ei &= \left(\sumneighbori\int_{\eij}\frac{\baruj - \barui}{R_{ij}}d\eij\right) + \int_{\eiq} q_b d\eiq + \int_{\eiT}\frac{T_b - \barui}{R_i}d\eiT\label{eqn_lcm_1}\\
-        \bar{A}^{(i)}\dot{\bar{u}}^{(i)} &= \left(\sumneighbori\frac{|\eij|}{R_{ij}}\left(\baruj - \barui\right)\right) + |\eiq|\bar{q}^{(i)} + \frac{|\eiT|}{R_i}\left(\bar{T}^{(i)} - \barui\right) \label{eqn_lcm_2}\\ 
-        &= \sumneighbori\left(-\frac{|\eij|}{R_{ij}}\barui + \frac{|\eij|}{R_{ij}}\baruj\right) + \left(-\frac{|\eiT|}{R_{i}}\barui\right) + \left(|\eiq|\bar{q}^{(i)} + \frac{|\eiT|}{R_i}\bar{T}^{(i)}\right)\label{eqn_lcm_3}\\
-        &= \sumneighbordirichlet\left(\bar{B}^{(i)}_{ij}\barui + \bar{B}^{(j)}_{ij}\baruj\right) + \bar{f}^{(i)}\label{eqn_lcm_4}
+        \int_{\Ei}\rho c_p \dot{\bar{u}}_i d\Ei &= \left(\sumneighbori\int_{\eij}\frac{\bar{u}_j - \bar{u}_i}{R_{ij}}d\eij\right) + \int_{\eiq} q_b d\eiq + \int_{\eiT}\frac{T_b - \bar{u}_i}{R_i}d\eiT\label{eqn_lcm_1}\\
+        \bar{A}_i\dot{\bar{u}}_i &= \left(\sumneighbori\frac{|\eij|}{R_{ij}}\left(\bar{u}_j - \bar{u}_i\right)\right) + |\eiq|\bar{q}_i + \frac{|\eiT|}{R_i}\left(\bar{T}_i - \bar{u}_i\right) \label{eqn_lcm_2}\\
+        &= \sumneighbori\left(-\frac{|\eij|}{R_{ij}}\bar{u}_i + \frac{|\eij|}{R_{ij}}\bar{u}_j\right) + \left(-\frac{|\eiT|}{R_{i}}\bar{u}_i\right) + \left(|\eiq|\bar{q}_i + \frac{|\eiT|}{R_i}\bar{T}_i\right)\label{eqn_lcm_3}\\
+        &= \sumneighbordirichlet\left(\bar{B}^{i}_{ij}\bar{u}_i + \bar{B}^{j}_{ij}\bar{u}_j\right) + \bar{f}_i\label{eqn_lcm_4}
     \end{align}
 \end{subequations}
-where in \cref{eqn_lcm_2} $|e|$ denotes the length $(d=2)$ or area $(d=3)$ of a component boundary $e$. The $\bar{A}^{(i)}$, $\bar{B}_{ij}^{(i)}$, and $\bar{B}_{ij}^{(j)}$ quantities are provided in \cref{eqn_lcm_matrices_elements}.
+where in \cref{eqn_lcm_2} $|e|$ denotes the length $(d=2)$ or area $(d=3)$ of a component boundary $e$. The $\bar{A}_i$, $\bar{B}^{i}_{ij}$, and $\bar{B}^{j}_{ij}$ quantities are provided in \cref{eqn_lcm_matrices_elements}.
 
-The lumped-mass representation for the four-component TPS is shown in Fig.~\ref{fig_four_components}. Let $v_i$ represent the area of the $i$-th element, $\overline{\rho c_p}_{,i}$, the heat capacity evaluated using the average temperature $\bu^{(i)}$, and $1/R_{ij} = 1/R_{i}(\bu^{(i)}) + 1/R_{j}(\bu^{(j)})$ the equivalent thermal resistance between elements $i$ and $j$. Leveraging the formulas from \cref{eqn_lcm_matrices,eqn_lcm_matrices_elements}, the LCM matrices are given by,
+The lumped-mass representation for the four-component TPS is shown in Fig.~\ref{fig_tps}. Let $\vw\in\mathbb{R}^{\tilde{N}}$ be the one-dimensional surface displacements of the ablative TPS components, $v_i$ represent the area of the $i$-th component, $\overline{\rho c_p}_{,i}$, the constant heat capacitance, and $1/R_{ij} = 1/R_{i} + 1/R_{j}$ the equivalent thermal resistance between  $i$ and $j$. Note that the areas and equivalent thermal resistances vary with $\vw$ due to ablation. Leveraging the formulas from \cref{eqn_lcm_matrices,eqn_lcm_matrices_elements}, the LCM matrices are given by,
 \begin{subequations}
     \begin{gather}
         \bar{\vA} = \begin{bmatrix}
