@@ -57,7 +57,7 @@ where for $k,l=1,2,\dots,P$,
     \begin{align}
         \left[\vA^{i}\right]_{kl} &= \intEi\rho c_p\phi_{k}^{i}\phi_{l}^{i}d\Ei\\
         \left[\vB^{i}\right]_{kl} &= -\intEi\left(\nabla\phi_{k}^{i}\right)\cdot\left(\vk\nabla\phi_{l}^{i}\right)d\Ei\\
-        \left[\vC^{i}\right]_{kl} &= \intEi\rho c_p \phi_{k}^{i}\vv^{i}\cdot\nabla\phi_{l}^{i}d\Ei\label{eqn_advection_matrix_element_kl}\\
+        \left[\vC^{i}\right]_{kl} &= \intEi\rho c_p \phi_{k}^{i}\vv^{i}_m\cdot\nabla\phi_{l}^{i}d\Ei\label{eqn_advection_matrix_element_kl}\\
         \left[\vB^{i}_{ij}\right] &= \int_{\eij}\average{\vk\nabla\phi_{k}^{i}\cdot\hat{n}}\phi_{l}^{i} - \sigma\jump{\phi_{k}^{i}}\phi_{l}^{i}d\eij\\
         \left[\vB^{j}_{ij}\right] &= \int_{\eij}-\average{\vk\nabla\phi_{k}^{i}\cdot\hat{n}}\phi_{l}^{j} + \sigma\jump{\phi_{k}^{i}}\phi_{l}^{j}d\eij\\
         \left[\vf^{i}\right]_k &= \int_{\eiq}\phi_{k}^{i}q_bd\eiq + \sigma\int_{\eiT}\phi_{k}^{i}d\eiT
